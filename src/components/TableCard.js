@@ -13,6 +13,7 @@ export default function CardTable() {
         <Card>
             <CardHeader color="purple" contentPosition="left">
                 <h2 className="text-white text-2xl">Card Table</h2>
+                
             </CardHeader>
             <CardBody>
                 <div className="overflow-x-auto">

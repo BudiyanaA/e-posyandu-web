@@ -80,7 +80,7 @@ Material Tailwind Dashboard React
     │   │   │   ├── SettingsForm.js
     │   │   │   ├── Sidebar.js
     │   │   │   ├── StatusCard.js
-    │   │   │   ├── TableCard.js
+    │   │   │   ├── .js
     │   │   │   └── TrafficCard.js
     │   │   ├── Pages
     │   │   │   ├── Dashboard.js

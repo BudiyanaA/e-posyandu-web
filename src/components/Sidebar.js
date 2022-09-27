@@ -41,6 +41,96 @@ export default function Sidebar() {
                             </li>
                             <li className="rounded-lg mb-2">
                                 <NavLink
+                                    to="/mastervilage"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="settings" size="2xl" />
+                                    Desa
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/mom"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="settings" size="2xl" />
+                                    Ibu
+                                </NavLink>
+                            </li>
+                             <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/dad"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="settings" size="2xl" />
+                                    Suami
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/imunization"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="settings" size="2xl" />
+                                    Imunisasi
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/child"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="settings" size="2xl" />
+                                    Anak
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/kms"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="settings" size="2xl" />
+                                    Penimbangan
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/birthrecord"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="settings" size="2xl" />
+                                    Catatan Lahir
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/admin"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="settings" size="2xl" />
+                                    Admin
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/posyandu"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="settings" size="2xl" />
+                                    Posyandu
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
                                     to="/settings"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
