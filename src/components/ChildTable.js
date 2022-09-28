@@ -8,8 +8,10 @@ export default function CardTable() {
         <Card>
              <CardHeader color="purple" contentPosition="#">
                 <div className="flex w-max justify-between gap-4">
-                    <h2 className="text-white text-2xl">Table Desa</h2>                                 
-                    <Button color="blue" size="sm"><Icon name="add" size="xl" /></Button>
+                    <h2 className="text-white text-2xl">Table Anak</h2>                                 
+                    <a href="/child/create">                      
+                        <Button color="blue" size="sm"><Icon name="add" size="xl" /></Button> 
+                    </a>
                 </div>
             </CardHeader>
             <CardBody>
