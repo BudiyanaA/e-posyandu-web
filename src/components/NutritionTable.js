@@ -3,59 +3,21 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
-import React, { useState, useEffect } from "react";
-import MastervilageDataService from "services/MastervilageService";
-import { Link } from "react-router-dom";
-export default function MastervilageTable() {
-    const [mastervilages, setMastervilages] = useState([]);
-    const [currentMastervilage, setCurrentMastervilage] = useState(null);
-    const [currentIndex, setCurrentIndex] = useState(-1);
-    const [searchName, setSearchName] = useState("");
-    useEffect(() => {
-        retrieveMastervilages();
-      }, []);
-      const onChangeSearchName = e => {
-        const searchName = e.target.value;
-        setSearchName(searchName);
-      };
-      const retrieveMastervilages = () => {
-        MastervilageDataService.getAll()
-          .then(response => {
-            setMastervilages(response.data);
-            console.log(response.data);
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      };
-      const refreshList = () => {
-        retrieveMastervilages();
-        setCurrentMastervilage(null);
-        setCurrentIndex(-1);
-      };
-      const setActiveMastervilage = (mastervilage, index) => {
-        setCurrentMastervilage(mastervilage);
-        setCurrentIndex(index);
-      };
-      const removeAllMastervilages = () => {
-        MastervilageDataService.removeAll()
-          .then(response => {
-            console.log(response.data);
-            refreshList();
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      };
+
+export default function CardTable() {
     return (
         <Card>
-            <CardHeader color="purple" contentPosition="#">
+             <CardHeader color="purple" contentPosition="#">
                 <div className="flex w-max justify-between gap-4">
-                    <h2 className="text-white text-2xl">Table Desa</h2>
-                    <a href="/mastervilage/create">                      
-                        <Button color="blue" size="sm"><Icon name="add" size="xl" /></Button> 
-                    </a> 
+                    <h2 className="text-white text-2xl">Table Nutrisi</h2>                                 
+                    <a href="/#">                      
+                        <Button color="green" size="sm">Upload Exel</Button> 
+                    </a>
+                    <a href="/#">                      
+                        <Button color="blue" size="sm">Upload Pdf</Button> 
+                    </a>
                 </div>
+                
             </CardHeader>
             <CardBody>
                 <div className="overflow-x-auto">
@@ -66,7 +28,13 @@ export default function MastervilageTable() {
                                     No
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                    Name
+                                    Child
+                                </th>
+                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+                                    Mom
+                                </th>
+                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+                                    Dad
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Action
@@ -79,7 +47,13 @@ export default function MastervilageTable() {
                                     1
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Pasanggrahan
+                                    Muhamad Rizki
+                                </th>
+                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    Sarah
+                                </th>
+                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    Kevin
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 

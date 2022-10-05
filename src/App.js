@@ -23,6 +23,7 @@ import CreateBirthrecord from 'pages/create/CreateBirthrecord';
 import CreateAdmin from 'pages/create/CreateAdmin';
 import CreatePosyandu from 'pages/create/CreatePosyandu';
 import Login from 'pages/Login';
+import Nutrition from 'pages/Nutrition'
 import Footer from 'components/Footer';
 
 
@@ -65,6 +66,7 @@ function App() {
                         <Route exact path="/birthrecord/create" element={<CreateBirthrecord/>} />
                         <Route exact path="/admin/create" element={<CreateAdmin/>} />
                         <Route exact path="/posyandu/create" element={<CreatePosyandu/>} />
+                        <Route exact path="/nutrition" element={<Nutrition/>} />
                     </Route>
                     
                     {/* <Navigate  from="*" to="/" /> */}
