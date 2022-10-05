@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from 'react-router-dom';
+import {  BrowserRouter as Router, Routes, Route, Navigate , Outlet } from 'react-router-dom';
 import Sidebar from 'components/Sidebar';
 import Dashboard from 'pages/Dashboard';
 import Settings from 'pages/Settings';
@@ -22,44 +22,60 @@ import CreateKms from 'pages/create/CreateKms';
 import CreateBirthrecord from 'pages/create/CreateBirthrecord';
 import CreateAdmin from 'pages/create/CreateAdmin';
 import CreatePosyandu from 'pages/create/CreatePosyandu';
+import Login from 'pages/Login';
 import Footer from 'components/Footer';
+
 
 // Tailwind CSS Style Sheet
 import 'assets/styles/tailwind.css';
-
+const SidebarLayout = () => (
+    <>
+      <Sidebar />
+      <Outlet />
+    </>
+  );
 function App() {
+
+
     return (
+        
         <>
-            <Sidebar />
             <div className="md:ml-64">
-                <Switch>
-                    <Route exact path="/" component={Dashboard} />
-                    <Route exact path="/mastervilage" component={Mastervilage} />
-                    <Route exact path="/mom" component={Mom} />
-                    <Route exact path="/dad" component={Dad} />
-                    <Route exact path="/imunization" component={Imunization} />
-                    <Route exact path="/child" component={Child} />
-                    <Route exact path="/kms" component={Kms} />
-                    <Route exact path="/birthrecord" component={Birthrecord} />
-                    <Route exact path="/admin" component={Admin} />
-                    <Route exact path="/posyandu" component={Posyandu} />
-                    <Route exact path="/settings" component={Settings} />
-                    <Route exact path="/tables" component={Tables} />
-                    <Route exact path="/maps" component={Maps} />
-                    <Route exact path="/MasterVilage/create" component={Createmastervillage} />
-                    <Route exact path="/mom/create" component={CreateMom} />
-                    <Route exact path="/dad/create" component={CreateDad} />
-                    <Route exact path="/imunization/create" component={CreateImunization} />
-                    <Route exact path="/child/create" component={CreateChild} />
-                    <Route exact path="/kms/create" component={CreateKms} />
-                    <Route exact path="/birthrecord/create" component={CreateBirthrecord} />
-                    <Route exact path="/admin/create" component={CreateAdmin} />
-                    <Route exact path="/posyandu/create" component={CreatePosyandu} />
-                    <Redirect from="*" to="/" />
-                </Switch>
-                <Footer />
+                <Routes>
+                    <Route element={<SidebarLayout/>}>r
+                        <Route exact path="/" element={<Dashboard/> } />
+                        <Route exact path="/mastervilage" element={<Mastervilage/>} />
+                        <Route exact path="/mom" element={<Mom/>} />
+                        <Route exact path="/dad" element={<Dad/>} />
+                        <Route exact path="/imunization" element={<Imunization/>} />
+                        <Route exact path="/child" element={<Child/>} />
+                        <Route exact path="/kms" element={<Kms/>} />
+                        <Route exact path="/birthrecord" element={<Birthrecord/>} />
+                        <Route exact path="/admin" element={<Admin/>} />
+                        <Route exact path="/posyandu" element={<Posyandu/>} />
+                        <Route exact path="/settings" element={<Settings/>} />
+                        <Route exact path="/tables" element={<Tables/>} />
+                        <Route exact path="/maps" element={<Maps/>} />
+                        <Route exact path="/MasterVilage/create" element={<Createmastervillage/>} />
+                        <Route exact path="/mom/create" element={<CreateMom/>} />
+                        <Route exact path="/dad/create" element={<CreateDad/>} />
+                        <Route exact path="/imunization/create" element={<CreateImunization/>} />
+                        <Route exact path="/child/create" element={<CreateChild/>} />
+                        <Route exact path="/kms/create" element={<CreateKms/>} />
+                        <Route exact path="/birthrecord/create" element={<CreateBirthrecord/>} />
+                        <Route exact path="/admin/create" element={<CreateAdmin/>} />
+                        <Route exact path="/posyandu/create" element={<CreatePosyandu/>} />
+                    </Route>
+                    
+                    {/* <Navigate  from="*" to="/" /> */}
+                </Routes>
+                {/* <Footer /> */}
             </div>
-        </>
+            <Routes>
+                <Route exact path="/login" element={<Login/>} />
+            </Routes>
+            <Footer />
+            </>
     );
 }
 
