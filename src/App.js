@@ -9,7 +9,7 @@ import Imunization from 'pages/Imunization';
 import Child from 'pages/Child';
 import Kms from 'pages/Kms';
 import Birthrecord from 'pages/Birthrecord';
-import Admin from 'pages/Admin';
+import User from 'pages/User';
 import Posyandu from 'pages/Posyandu';
 import Tables from 'pages/Tables';
 import Maps from 'pages/Maps';
@@ -20,7 +20,7 @@ import CreateImunization from 'pages/create/CreateImunization';
 import CreateChild from 'pages/create/CreateChild';
 import CreateKms from 'pages/create/CreateKms';
 import CreateBirthrecord from 'pages/create/CreateBirthrecord';
-import CreateAdmin from 'pages/create/CreateAdmin';
+import CreateUser from 'pages/create/CreateUser';
 import CreatePosyandu from 'pages/create/CreatePosyandu';
 import Login from 'pages/Login';
 import Nutrition from 'pages/Nutrition'
@@ -53,7 +53,7 @@ function App() {
                         <Route exact path="/child" element={<Child/>} />
                         <Route exact path="/kms" element={<Kms/>} />
                         <Route exact path="/birthrecord" element={<Birthrecord/>} />
-                        <Route exact path="/admin" element={<Admin/>} />
+                        <Route exact path="/user" element={<User/>} />
                         <Route exact path="/posyandu" element={<Posyandu/>} />
                         <Route exact path="/settings" element={<Settings/>} />
                         <Route exact path="/tables" element={<Tables/>} />
@@ -65,7 +65,7 @@ function App() {
                         <Route exact path="/child/create" element={<CreateChild/>} />
                         <Route exact path="/kms/create" element={<CreateKms/>} />
                         <Route exact path="/birthrecord/create" element={<CreateBirthrecord/>} />
-                        <Route exact path="/admin/create" element={<CreateAdmin/>} />
+                        <Route exact path="/user/create" element={<CreateUser/>} />
                         <Route exact path="/posyandu/create" element={<CreatePosyandu/>} />
                         <Route exact path="/nutrition" element={<Nutrition/>} />
                         <Route exact path="/masterVilage/edit/:id" element={<EditMastervilage/>} />
