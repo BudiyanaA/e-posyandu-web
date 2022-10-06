@@ -6,7 +6,7 @@ import Input from '@material-tailwind/react/Input';
 import React, { useState } from "react";
 import MastervilageDataService from "services/MastervilageService";
 
-export default function VillageForm() {
+export default function LoginForm() {
     const initialMastervilagelState = {
         id: null,
         name: ""
