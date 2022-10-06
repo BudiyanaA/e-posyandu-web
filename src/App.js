@@ -25,6 +25,7 @@ import CreatePosyandu from 'pages/create/CreatePosyandu';
 import Login from 'pages/Login';
 import Nutrition from 'pages/Nutrition'
 import Footer from 'components/Footer';
+import EditMastervilage from 'pages/edit/EditMastervilage';
 
 
 // Tailwind CSS Style Sheet
@@ -57,7 +58,7 @@ function App() {
                         <Route exact path="/settings" element={<Settings/>} />
                         <Route exact path="/tables" element={<Tables/>} />
                         <Route exact path="/maps" element={<Maps/>} />
-                        <Route exact path="/MasterVilage/create" element={<Createmastervillage/>} />
+                        <Route exact path="/masterVilage/create" element={<Createmastervillage/>} />
                         <Route exact path="/mom/create" element={<CreateMom/>} />
                         <Route exact path="/dad/create" element={<CreateDad/>} />
                         <Route exact path="/imunization/create" element={<CreateImunization/>} />
@@ -67,6 +68,7 @@ function App() {
                         <Route exact path="/admin/create" element={<CreateAdmin/>} />
                         <Route exact path="/posyandu/create" element={<CreatePosyandu/>} />
                         <Route exact path="/nutrition" element={<Nutrition/>} />
+                        <Route exact path="/masterVilage/edit/:id" element={<EditMastervilage/>} />
                     </Route>
                     
                     {/* <Navigate  from="*" to="/" /> */}

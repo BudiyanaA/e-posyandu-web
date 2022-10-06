@@ -5,19 +5,18 @@ import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
 import React, { useState, useEffect } from "react";
 import MastervilageDataService from "services/MastervilageService";
-import { Link } from "react-router-dom";
 export default function MastervilageTable() {
     const [mastervilages, setMastervilages] = useState([]);
     const [currentMastervilage, setCurrentMastervilage] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
-    const [searchName, setSearchName] = useState("");
+    // const [searchName, setSearchName] = useState("");
     useEffect(() => {
         retrieveMastervilages();
       }, []);
-      const onChangeSearchName = e => {
-        const searchName = e.target.value;
-        setSearchName(searchName);
-      };
+    //   const onChangeSearchName = e => {
+    //     const searchName = e.target.value;
+    //     setSearchName(searchName);
+    //   };
       const retrieveMastervilages = () => {
         MastervilageDataService.getAll()
           .then(response => {
@@ -33,12 +32,12 @@ export default function MastervilageTable() {
         setCurrentMastervilage(null);
         setCurrentIndex(-1);
       };
-      const setActiveMastervilage = (mastervilage, index) => {
-        setCurrentMastervilage(mastervilage);
-        setCurrentIndex(index);
-      };
-      const removeAllMastervilages = () => {
-        MastervilageDataService.removeAll()
+    //   const setActiveMastervilage = (mastervilage, index) => {
+    //     setCurrentMastervilage(mastervilage);
+    //     setCurrentIndex(index);
+    //   };
+      const removeMastervilages = (id) => {
+        MastervilageDataService.remove(id)
           .then(response => {
             console.log(response.data);
             refreshList();
@@ -48,6 +47,7 @@ export default function MastervilageTable() {
           });
       };
     return (
+        
         <Card>
             <CardHeader color="purple" contentPosition="#">
                 <div className="flex w-max justify-between gap-4">
@@ -58,6 +58,7 @@ export default function MastervilageTable() {
                 </div>
             </CardHeader>
             <CardBody>
+            <ul className="list-group">
                 <div className="overflow-x-auto">
                     <table className="items-center w-full bg-transparent border-collapse">
                         <thead>
@@ -74,23 +75,32 @@ export default function MastervilageTable() {
                             </tr>
                         </thead>
                         <tbody>
+                        
+                        {mastervilages &&
+                            mastervilages.map((mastervilage, index) => (
                             <tr>
+                                
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {index+1}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Pasanggrahan
+                                {mastervilage.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <div className="flex w-max items-end gap-4">                                 
-                                        <Button color="green" size="sm"><Icon name="create" size="xl" /></Button>
-                                        <Button color="red" size="sm"><Icon name="delete" size="xl" /></Button>
+                                    <div className="flex w-max items-end gap-4"> 
+                                    <a href={"/mastervilage/edit/" + mastervilage.id}>                                 
+                                        <Button color="green" size="sm"><Icon name="edit" size="xl" /></Button>
+                                    </a>
+                                        <Button onClick={()=>removeMastervilages(mastervilage.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
                                     </div>                                
                                 </th>
                             </tr>
+                             ))}
+                        
                         </tbody>
                     </table>
                 </div>
+                </ul>
             </CardBody>
         </Card>
     );

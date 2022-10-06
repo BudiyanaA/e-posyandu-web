@@ -44,28 +44,27 @@ export default function VillageForm() {
       };
     return (
         <>
-        <div className="bg-light-blue-500 pt-10 pb-25"></div>
-
-            <Card>
-                <CardHeader color="purple" contentPosition="none">
-                    <div className="w-full flex items-center justify-between">
-                        <h2 className="text-white text-2xl">Create</h2>
-                        <Button
-                            color="transparent"
-                            buttonType="link"
-                            size="lg"
-                            style={{ padding: 0 }}
+          <div className="bg-light-blue-500 pt-10 pb-25"></div>
+          <Card>
+            <CardHeader color="purple" contentPosition="none">
+              <div className="w-full flex items-center justify-between">
+                  <h2 className="text-white text-2xl">Create</h2>
+                      <Button
+                          color="transparent"
+                          buttonType="link"
+                          size="lg"
+                          style={{ padding: 0 }}
                         >
-                            Master Village
-                        </Button>
-                    </div>                   
-                </CardHeader>                
+                          Master Village
+                      </Button>
+                </div>                   
+            </CardHeader>                
                 <CardBody>              
                 <h6 className="text-purple-500 text-sm mt-3 mb-6 font-light uppercase"></h6>
                 <div className="submit-form">
                     {submitted ? (
                     <div>
-                        <h4>You submitted successfully!</h4>
+                      <h4>You submitted successfully!</h4>
                         <button className="btn btn-success" onClick={newMastervilage}>
                             Add
                         </button>
@@ -90,8 +89,8 @@ export default function VillageForm() {
                     </div>        
                      )}
                 </div>
-                </CardBody>
-            </Card>
+              </CardBody>
+          </Card>
         </>
     );
 }
