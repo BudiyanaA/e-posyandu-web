@@ -9,11 +9,15 @@ export default function CardTable() {
         <Card>
              <CardHeader color="purple" contentPosition="#">
                 <div className="flex w-max justify-between gap-4">
-                    <h2 className="text-white text-2xl">Table Admin</h2>                                 
-                    <a href="/admin/create">                      
-                        <Button color="blue" size="sm"><Icon name="add" size="xl" /></Button> 
+                    <h2 className="text-white text-2xl">Table Nutrisi</h2>                                 
+                    <a href="/#">                      
+                        <Button color="green" size="sm">Upload Exel</Button> 
+                    </a>
+                    <a href="/#">                      
+                        <Button color="blue" size="sm">Upload Pdf</Button> 
                     </a>
                 </div>
+                
             </CardHeader>
             <CardBody>
                 <div className="overflow-x-auto">
@@ -24,10 +28,13 @@ export default function CardTable() {
                                     No
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                    Email
+                                    Child
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                    User Name
+                                    Mom
+                                </th>
+                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+                                    Dad
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Action
@@ -40,10 +47,13 @@ export default function CardTable() {
                                     1
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Admin32@mail.com
+                                    Muhamad Rizki
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Admin
+                                    Sarah
+                                </th>
+                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    Kevin
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 

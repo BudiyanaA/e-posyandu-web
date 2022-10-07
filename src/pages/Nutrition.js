@@ -1,4 +1,4 @@
-import AdminTable from 'components/AdminTable';
+import NutritionTable from 'components/NutritionTable';
 
 export default function Dashboard() {
     return (
@@ -13,7 +13,7 @@ export default function Dashboard() {
             <div className="px-3 md:px-8 h-auto -mt-24">
                 <div className="container mx-auto max-w-full">
                     <div className="grid grid-cols-1 px-4 mb-16">
-                        <AdminTable />
+                        <NutritionTable />
                     </div>
                 </div>
             </div>
