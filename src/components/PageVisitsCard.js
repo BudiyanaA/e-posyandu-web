@@ -1,17 +1,17 @@
-import Card from '@material-tailwind/react/Card';
-import CardHeader from '@material-tailwind/react/CardHeader';
-import CardBody from '@material-tailwind/react/CardBody';
-import Button from '@material-tailwind/react/Button';
+// import Card from '@material-tailwind/react/Card';
+// import CardHeader from '@material-tailwind/react/CardHeader';
+// import CardBody from '@material-tailwind/react/CardBody';
+import { Button, Card, CardHeader, CardBody } from "@material-tailwind/react";
 
 export default function PageVisitsCard() {
     return (
         <Card>
-            <CardHeader color="blue" contentPosition="none">
+            <CardHeader color="blue" className="none">
                 <div className="w-full flex items-center justify-between">
                     <h2 className="text-white text-2xl">Page Visits</h2>
                     <Button
-                        color="transparent"
-                        buttonType="link"
+                        color="white"
+                        // buttonType="link"
                         size="lg"
                         style={{ padding: 0 }}
                     >

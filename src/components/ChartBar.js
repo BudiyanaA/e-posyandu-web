@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import Chart from 'chart.js';
-import Card from '@material-tailwind/react/Card';
-import CardHeader from '@material-tailwind/react/CardHeader';
-import CardBody from '@material-tailwind/react/CardBody';
+import { Card, CardHeader, CardBody} from '@material-tailwind/react';
+// import CardHeader from '@material-tailwind/react/CardHeader';
+// import CardBody from '@material-tailwind/react/CardBody';
 
 export default function ChartBar() {
     useEffect(() => {
@@ -103,7 +103,7 @@ export default function ChartBar() {
     }, []);
     return (
         <Card>
-            <CardHeader color="pink" contentPosition="left">
+            <CardHeader color="pink" className="left">
                 <h6 className="uppercase text-gray-200 text-xs font-medium">
                     Overview
                 </h6>

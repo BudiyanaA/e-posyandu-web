@@ -1,11 +1,11 @@
-import Card from '@material-tailwind/react/Card';
-import CardBody from '@material-tailwind/react/CardBody';
-import CardFooter from '@material-tailwind/react/CardFooter';
-import Image from '@material-tailwind/react/Image';
-import H5 from '@material-tailwind/react/Heading5';
-import Icon from '@material-tailwind/react/Icon';
-import LeadText from '@material-tailwind/react/LeadText';
-import Button from '@material-tailwind/react/Button';
+// import Card from '@material-tailwind/react/Card';
+// import CardBody from '@material-tailwind/react/CardBody';
+// import CardFooter from '@material-tailwind/react/CardFooter';
+// import Image from '@material-tailwind/react/Image';
+// import H5 from '@material-tailwind/react/Heading5';
+// import Icon from '@material-tailwind/react/Icon';
+// import LeadText from '@material-tailwind/react/LeadText';
+import { Button, Card, CardBody, CardFooter, Image, H5, Icon, LeadText } from "@material-tailwind/react";
 import ProfilePicture from 'assets/img/team-1-800x800.jpg';
 
 export default function ProfileCard() {
@@ -69,7 +69,9 @@ export default function ProfileCard() {
                         className="mt-5"
                         onClick={(e) => e.preventDefault()}
                     >
-                        <Button color="purple" buttonType="link" ripple="dark">
+                        <Button color="purple" 
+                        // buttonType="link" 
+                        ripple="dark">
                             Show more
                         </Button>
                     </a>

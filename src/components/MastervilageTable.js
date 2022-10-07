@@ -1,8 +1,8 @@
-import Card from '@material-tailwind/react/Card';
-import CardHeader from '@material-tailwind/react/CardHeader';
-import CardBody from '@material-tailwind/react/CardBody';
-import { Button } from "@material-tailwind/react";
-import Icon from '@material-tailwind/react/Icon';
+// import Card from '@material-tailwind/react/Card';
+// import CardHeader from '@material-tailwind/react/CardHeader';
+// import CardBody from '@material-tailwind/react/CardBody';
+import { Button, Card, CardHeader, CardBody, Icon, IconButton } from "@material-tailwind/react";
+// import Icon from '@material-tailwind/react/Icon';
 import React, { useState, useEffect } from "react";
 import MastervilageDataService from "services/MastervilageService";
 export default function MastervilageTable() {
@@ -49,11 +49,13 @@ export default function MastervilageTable() {
     return (
         
         <Card>
-            <CardHeader color="purple" contentPosition="#">
+            <CardHeader color="purple" className="#">
                 <div className="flex w-max justify-between gap-4">
                     <h2 className="text-white text-2xl">Table Desa</h2>
                     <a href="/mastervilage/create">                      
-                        <Button color="blue" size="sm"><Icon name="add" size="xl" /></Button> 
+                        <IconButton color="blue" size="sm">
+                        <i className="add" size="xl" />
+                        </IconButton> 
                     </a> 
                 </div>
             </CardHeader>
@@ -78,7 +80,7 @@ export default function MastervilageTable() {
                         
                         {mastervilages &&
                             mastervilages.map((mastervilage, index) => (
-                            <tr>
+                            <tr key={index}>
                                 
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                 {index+1}
@@ -89,9 +91,13 @@ export default function MastervilageTable() {
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4"> 
                                     <a href={"/mastervilage/edit/" + mastervilage.id}>                                 
-                                        <Button color="green" size="sm"><Icon name="edit" size="xl" /></Button>
+                                    <IconButton color="blue" size="sm">
+                                      <i className="edit" size="xl" />
+                                    </IconButton> 
                                     </a>
-                                        <Button onClick={()=>removeMastervilages(mastervilage.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
+                                        <IconButton onClick={()=>removeMastervilages(mastervilage.id)} color="red" size="sm">
+                                          <i className="delete" size="xl" />
+                                        </IconButton> 
                                     </div>                                
                                 </th>
                             </tr>

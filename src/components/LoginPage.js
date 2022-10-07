@@ -1,8 +1,8 @@
-import Card from '@material-tailwind/react/Card';
-import CardHeader from '@material-tailwind/react/CardHeader';
-import CardBody from '@material-tailwind/react/CardBody';
-import Button from '@material-tailwind/react/Button';
-import Input from '@material-tailwind/react/Input';
+// import Card from '@material-tailwind/react/Card';
+// import CardHeader from '@material-tailwind/react/CardHeader';
+// import CardBody from '@material-tailwind/react/CardBody';
+import { Button, Card, CardHeader, CardBody, Input }from '@material-tailwind/react';
+// import Input from '@material-tailwind/react/Input';
 import React, { useState } from "react";
 import LoginDataService from "services/LoginService";
 import { useNavigate } from "react-router-dom";
@@ -49,12 +49,12 @@ export default function LoginForm() {
         <>
             <div className="bg-light-blue-600 pt-10 pb-25 "></div>
                 <Card className="w-96">
-                    <CardHeader color="blue" contentPosition="center">
+                    <CardHeader color="blue" className="center">
                         <div className="w-full flex items-center justify-between">
                             <h2 className=" text-white text-3xl">Login</h2>
                             <Button
-                                color="transparent"
-                                buttonType="link"
+                                color="white"
+                                // buttonType="link"
                                 size="lg"
                                 // style={{ padding: 0 }}
                             >

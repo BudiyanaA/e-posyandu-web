@@ -1,8 +1,5 @@
-import Card from '@material-tailwind/react/Card';
-import CardHeader from '@material-tailwind/react/CardHeader';
-import CardBody from '@material-tailwind/react/CardBody';
-import Button from '@material-tailwind/react/Button';
-import Input from '@material-tailwind/react/Input';
+// import Card from '@material-tailwind/react/Card';
+import { Button, Card, CardHeader, CardBody, Input } from "@material-tailwind/react";
 import React, { useState , useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import MastervilageDataService from "services/MastervilageService";
@@ -53,12 +50,12 @@ export default function VillageForm() {
         <>
         <div className="bg-light-blue-500 pt-10 pb-25"></div>
         <Card>
-            <CardHeader color="purple" contentPosition="none">
+            <CardHeader color="purple" className="none">
                 <div className="w-full flex items-center justify-between">
                     <h2 className="text-white text-2xl">Edit</h2>
                     <Button
-                        color="transparent"
-                        buttonType="link"
+                        color="white"
+                        // buttonType="link"
                         size="lg"
                         style={{ padding: 0 }}
                         >

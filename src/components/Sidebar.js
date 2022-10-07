@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import AdminNavbar from './AdminNavbar';
-import Icon from '@material-tailwind/react/Icon';
-import H6 from '@material-tailwind/react/Heading6';
+import { IconButton, Typography, Button } from '@material-tailwind/react';
+
+// import H6 from '@material-tailwind/react/Heading6';
 
 export default function Sidebar() {
     const [showSidebar, setShowSidebar] = useState('-left-64');
@@ -22,7 +23,7 @@ export default function Sidebar() {
                         rel="noreferrer"
                         className="mt-2 text-center w-full inline-block"
                     >
-                        <H6 color="gray">Material Tailwind</H6>
+                        <Typography variant="h6">Material Tailwind</Typography>
                     </a>
                     <div className="flex flex-col">
                         <hr className="my-4 min-w-full" />
@@ -31,11 +32,13 @@ export default function Sidebar() {
                             <li className="rounded-lg mb-4">
                                 <NavLink
                                     to="/"
-                                    exact
+                                    // exact
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="dashboard" size="2xl" />
+                                    <IconButton variant="text" size="lg">
+                                        <i className="dashboard" />
+                                    </IconButton>
                                     Dashboard
                                 </NavLink>
                             </li>
@@ -43,9 +46,11 @@ export default function Sidebar() {
                                 <NavLink
                                     to="/mastervilage"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="holiday_village" size="2xl" />
+                                    <IconButton variant="text" size="lg">
+                                        <i className="holiday_village" />
+                                    </IconButton>
                                     Desa
                                 </NavLink>
                             </li>
@@ -53,9 +58,11 @@ export default function Sidebar() {
                                 <NavLink
                                     to="/mom"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="pregnant_woman" size="2xl" />
+                                    <IconButton variant="text" size="lg">
+                                        <i className="pregnant_woman" />
+                                    </IconButton>
                                     Ibu
                                 </NavLink>
                             </li>
@@ -63,9 +70,11 @@ export default function Sidebar() {
                                 <NavLink
                                     to="/dad"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="man" size="2xl" />
+                                    <IconButton variant="text" size="lg">
+                                        <i className="man" />
+                                    </IconButton>
                                     Suami
                                 </NavLink>
                             </li>
@@ -73,9 +82,11 @@ export default function Sidebar() {
                                 <NavLink
                                     to="/imunization"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="vaccines" size="2xl" />
+                                    <IconButton variant="text" size="lg">
+                                        <i className="vaccines" />
+                                    </IconButton>
                                     Imunisasi
                                 </NavLink>
                             </li>
@@ -83,9 +94,11 @@ export default function Sidebar() {
                                 <NavLink
                                     to="/child"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="child_care" size="2xl" />
+                                    <IconButton variant="text" size="lg">
+                                        <i className="child_care" />
+                                    </IconButton>
                                     Anak
                                 </NavLink>
                             </li>
@@ -93,9 +106,11 @@ export default function Sidebar() {
                                 <NavLink
                                     to="/kms"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="scale" size="2xl" />
+                                    <IconButton variant="text" size="lg">
+                                        <i className="scale" />
+                                    </IconButton>
                                     Penimbangan
                                 </NavLink>
                             </li>
@@ -103,9 +118,11 @@ export default function Sidebar() {
                                 <NavLink
                                     to="/nutrition"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="set_meal" size="2xl" />
+                                    <IconButton variant="text" size="lg">
+                                        <i className="set_meal" />
+                                    </IconButton>
                                     Nutrisi
                                 </NavLink>
                             </li>
@@ -113,9 +130,11 @@ export default function Sidebar() {
                                 <NavLink
                                     to="/birthrecord"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="receipt_long" size="2xl" />
+                                     <IconButton variant="text" size="lg">
+                                        <i className="receipt_long" />
+                                    </IconButton>
                                     Catatan Lahir
                                 </NavLink>
                             </li>
@@ -123,9 +142,11 @@ export default function Sidebar() {
                                 <NavLink
                                     to="/user"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="person" size="2xl" />
+                                    <IconButton variant="text" size="lg">
+                                        <i className="person" />
+                                    </IconButton>
                                     User
                                 </NavLink>
                             </li>
@@ -133,10 +154,15 @@ export default function Sidebar() {
                                 <NavLink
                                     to="/posyandu"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="medication" size="2xl" />
-                                    Posyandu
+                                    <Button variant="text" clasName="flex items-center" size="lg" >
+                                        <i className="material-icons mr-1 text-base leading-none" >
+                                            favorite
+                                         </i>
+                                         Posyandu
+                                    </Button>
+                                    
                                 </NavLink>
                             </li>
                             {/* <li className="rounded-lg mb-2">
@@ -186,9 +212,11 @@ export default function Sidebar() {
                                     target="_blank"
                                     rel="noreferrer"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="fingerprint" size="2xl" />
+                                    <IconButton variant="text" size="lg">
+                                        <i className="fingerprint" />
+                                    </IconButton>
                                     Login
                                 </NavLink>
                             </li>

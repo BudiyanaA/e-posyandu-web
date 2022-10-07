@@ -4,11 +4,15 @@ import { BrowserRouter } from 'react-router-dom';
 import App from 'App';
 import reportWebVitals from './reportWebVitals';
 
+import { ThemeProvider } from "@material-tailwind/react";
+
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <ThemeProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </ThemeProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );

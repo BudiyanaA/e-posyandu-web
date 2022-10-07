@@ -44,31 +44,31 @@ function App() {
         <>
             <div className="md:ml-64">
                 <Routes>
-                    <Route element={<SidebarLayout/>}>r
-                        <Route exact path="/" element={<Dashboard/> } />
-                        <Route exact path="/mastervilage" element={<Mastervilage/>} />
-                        <Route exact path="/mom" element={<Mom/>} />
-                        <Route exact path="/dad" element={<Dad/>} />
-                        <Route exact path="/imunization" element={<Imunization/>} />
-                        <Route exact path="/child" element={<Child/>} />
-                        <Route exact path="/kms" element={<Kms/>} />
-                        <Route exact path="/birthrecord" element={<Birthrecord/>} />
-                        <Route exact path="/user" element={<User/>} />
-                        <Route exact path="/posyandu" element={<Posyandu/>} />
-                        <Route exact path="/settings" element={<Settings/>} />
-                        <Route exact path="/tables" element={<Tables/>} />
-                        <Route exact path="/maps" element={<Maps/>} />
-                        <Route exact path="/masterVilage/create" element={<Createmastervillage/>} />
-                        <Route exact path="/mom/create" element={<CreateMom/>} />
-                        <Route exact path="/dad/create" element={<CreateDad/>} />
-                        <Route exact path="/imunization/create" element={<CreateImunization/>} />
-                        <Route exact path="/child/create" element={<CreateChild/>} />
-                        <Route exact path="/kms/create" element={<CreateKms/>} />
-                        <Route exact path="/birthrecord/create" element={<CreateBirthrecord/>} />
-                        <Route exact path="/user/create" element={<CreateUser/>} />
-                        <Route exact path="/posyandu/create" element={<CreatePosyandu/>} />
-                        <Route exact path="/nutrition" element={<Nutrition/>} />
-                        <Route exact path="/masterVilage/edit/:id" element={<EditMastervilage/>} />
+                    <Route element={<SidebarLayout/>}>
+                        <Route index path="/" element={<Dashboard/> } />
+                        <Route  path="/mastervilage" element={<Mastervilage/>} />
+                        <Route  path="/mom" element={<Mom/>} />
+                        <Route  path="/dad" element={<Dad/>} />
+                        <Route  path="/imunization" element={<Imunization/>} />
+                        <Route  path="/child" element={<Child/>} />
+                        <Route exct path="/kms" element={<Kms/>} />
+                        <Route path="/birthrecord" element={<Birthrecord/>} />
+                        <Route path="/user" element={<User/>} />
+                        <Route path="/posyandu" element={<Posyandu/>} />
+                        <Route path="/settings" element={<Settings/>} />
+                        <Route path="/tables" element={<Tables/>} />
+                        <Route path="/maps" element={<Maps/>} />
+                        <Route path="/masterVilage/create" element={<Createmastervillage/>} />
+                        <Route path="/mom/create" element={<CreateMom/>} />
+                        <Route path="/dad/create" element={<CreateDad/>} />
+                        <Route path="/imunization/create" element={<CreateImunization/>} />
+                        <Route path="/child/create" element={<CreateChild/>} />
+                        <Route path="/kms/create" element={<CreateKms/>} />
+                        <Route path="/birthrecord/create" element={<CreateBirthrecord/>} />
+                        <Route path="/user/create" element={<CreateUser/>} />
+                        <Route path="/posyandu/create" element={<CreatePosyandu/>} />
+                        <Route path="/nutrition" element={<Nutrition/>} />
+                        <Route path="/masterVilage/edit/:id" element={<EditMastervilage/>} />
                     </Route>
                     
                     {/* <Navigate  from="*" to="/" /> */}
@@ -76,7 +76,7 @@ function App() {
                 {/* <Footer /> */}
             </div>
             <Routes>
-                <Route exact path="/login" element={<Login/>} />
+                <Route  path="/login" element={<Login/>} />
             </Routes>
             <Footer />
             </>

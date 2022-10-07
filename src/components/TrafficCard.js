@@ -1,18 +1,18 @@
-import Card from '@material-tailwind/react/Card';
-import CardHeader from '@material-tailwind/react/CardHeader';
-import CardBody from '@material-tailwind/react/CardBody';
-import Button from '@material-tailwind/react/Button';
-import Progress from '@material-tailwind/react/Progress';
+// import Card from '@material-tailwind/react/Card';
+// import CardHeader from '@material-tailwind/react/CardHeader';
+// import CardBody from '@material-tailwind/react/CardBody';
+import { Button, Card, CardHeader, CardBody, Progress } from "@material-tailwind/react";
+// import Progress from '@material-tailwind/react/Progress';
 
 export default function TrafficCard() {
     return (
         <Card>
-            <CardHeader color="purple" contentPosition="none">
+            <CardHeader color="purple" className="none">
                 <div className="w-full flex items-center justify-between">
                     <h2 className="text-white text-2xl">Social Media</h2>
                     <Button
-                        color="transparent"
-                        buttonType="link"
+                        color="white"
+                        // buttonType="link"
                         size="lg"
                         style={{ padding: 0 }}
                     >
@@ -43,7 +43,7 @@ export default function TrafficCard() {
                                     1,480
                                 </td>
                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="blue" value="60" />
+                                    <Progress color="blue" value={60} />
                                 </td>
                             </tr>
                             <tr>
@@ -54,7 +54,7 @@ export default function TrafficCard() {
                                     4,807
                                 </td>
                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="red" value="80" />
+                                    <Progress color="red" value={80} />
                                 </td>
                             </tr>
                             <tr>
@@ -65,7 +65,7 @@ export default function TrafficCard() {
                                     3,678
                                 </td>
                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="indigo" value="75" />
+                                    <Progress color="indigo" value={75} />
                                 </td>
                             </tr>
                             <tr>
@@ -76,7 +76,7 @@ export default function TrafficCard() {
                                     2,645
                                 </td>
                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="lightBlue" value="90" />
+                                    <Progress color="blue-gray" value={90}/>
                                 </td>
                             </tr>
                         </tbody>

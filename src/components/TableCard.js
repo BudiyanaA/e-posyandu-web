@@ -1,8 +1,8 @@
-import Card from '@material-tailwind/react/Card';
-import CardHeader from '@material-tailwind/react/CardHeader';
-import CardBody from '@material-tailwind/react/CardBody';
-import Image from '@material-tailwind/react/Image';
-import Progress from '@material-tailwind/react/Progress';
+// import Card from '@material-tailwind/react/Card';
+// import CardHeader from '@material-tailwind/react/CardHeader';
+// import CardBody from '@material-tailwind/react/CardBody';
+// import Image from '@material-tailwind/react/Image';
+import { Progress, Card, CardBody, CardHeader, Image } from '@material-tailwind/react';
 import Team1 from 'assets/img/team-1-800x800.jpg';
 import Team2 from 'assets/img/team-2-800x800.jpg';
 import Team3 from 'assets/img/team-3-800x800.jpg';
@@ -11,7 +11,7 @@ import Team4 from 'assets/img/team-4-470x470.png';
 export default function CardTable() {
     return (
         <Card>
-            <CardHeader color="purple" contentPosition="left">
+            <CardHeader color="purple" className="left">
                 <h2 className="text-white text-2xl">Card Table</h2>
                 
             </CardHeader>
@@ -82,7 +82,7 @@ export default function CardTable() {
                                     </div>
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="red" value="60" />
+                                    <Progress color="red" value={60} />
                                 </th>
                             </tr>
                             <tr>
@@ -129,7 +129,7 @@ export default function CardTable() {
                                     </div>
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="green" value="100" />
+                                    <Progress color="green" value={100} />
                                 </th>
                             </tr>
                             <tr>
@@ -176,7 +176,7 @@ export default function CardTable() {
                                     </div>
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="teal" value="90" />
+                                    <Progress color="teal" value={90} />
                                 </th>
                             </tr>
                             <tr>
@@ -223,7 +223,7 @@ export default function CardTable() {
                                     </div>
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="green" value="100" />
+                                    <Progress color="green" value={100} />
                                 </th>
                             </tr>
                         </tbody>
