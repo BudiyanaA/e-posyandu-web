@@ -55,8 +55,18 @@ export default function Sidebar() {
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="holiday_village" size="2xl" />
+                                    <Icon name="medication" size="2xl" />
                                     Vaksin
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/masterreligion"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="mosque" size="2xl" />
+                                    Religion
                                 </NavLink>
                             </li>
                             <li className="rounded-lg mb-2">
