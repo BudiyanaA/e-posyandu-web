@@ -3,6 +3,7 @@ import Sidebar from 'components/Sidebar';
 import Dashboard from 'pages/Dashboard';
 import Settings from 'pages/Settings';
 import Mastervilage from 'pages/Mastervilage';
+import Mastervaksin from 'pages/Mastervaksin';
 import Mom from 'pages/Mom';
 import Dad from 'pages/Dad';
 import Imunization from 'pages/Imunization';
@@ -14,6 +15,7 @@ import Posyandu from 'pages/Posyandu';
 import Tables from 'pages/Tables';
 import Maps from 'pages/Maps';
 import Createmastervillage from 'pages/create/Createmastervilage';
+import Createmastervaksin from 'pages/create/Createmastervaksin';
 import CreateMom from 'pages/create/CreateMom';
 import CreateDad from 'pages/create/CreateDad';
 import CreateImunization from 'pages/create/CreateImunization';
@@ -26,6 +28,7 @@ import Login from 'pages/Login';
 import Nutrition from 'pages/Nutrition'
 import Footer from 'components/Footer';
 import EditMastervilage from 'pages/edit/EditMastervilage';
+import EditMastervaksin from 'pages/edit/EditMastervaksin';
 import EditPosyandu from 'pages/edit/EditPosyandu';
 
 // Tailwind CSS Style Sheet
@@ -44,9 +47,10 @@ function App() {
         <>
             <div className="md:ml-64">
                 <Routes>
-                    <Route element={<SidebarLayout/>}>r
+                    <Route element={<SidebarLayout/>}>
                         <Route exact path="/" element={<Dashboard/> } />
                         <Route exact path="/mastervilage" element={<Mastervilage/>} />
+                        <Route exact path="/mastervaksin" element={<Mastervaksin/>} />
                         <Route exact path="/mom" element={<Mom/>} />
                         <Route exact path="/dad" element={<Dad/>} />
                         <Route exact path="/imunization" element={<Imunization/>} />
@@ -58,7 +62,8 @@ function App() {
                         <Route exact path="/settings" element={<Settings/>} />
                         <Route exact path="/tables" element={<Tables/>} />
                         <Route exact path="/maps" element={<Maps/>} />
-                        <Route exact path="/masterVilage/create" element={<Createmastervillage/>} />
+                        <Route exact path="/mastervilage/create" element={<Createmastervillage/>} />
+                        <Route exact path="/mastervaksin/create" element={<Createmastervaksin/>} />
                         <Route exact path="/mom/create" element={<CreateMom/>} />
                         <Route exact path="/dad/create" element={<CreateDad/>} />
                         <Route exact path="/imunization/create" element={<CreateImunization/>} />
@@ -68,7 +73,8 @@ function App() {
                         <Route exact path="/user/create" element={<CreateUser/>} />
                         <Route exact path="/posyandu/create" element={<CreatePosyandu/>} />
                         <Route exact path="/nutrition" element={<Nutrition/>} />
-                        <Route exact path="/masterVilage/edit/:id" element={<EditMastervilage/>} />
+                        <Route exact path="/mastervilage/edit/:id" element={<EditMastervilage/>} />
+                        <Route exact path="/mastervaksin/edit/:id" element={<EditMastervaksin/>} />
                         <Route exact path="/posyandu/edit/:id" element={<EditPosyandu/>} />
                     </Route>
                     
