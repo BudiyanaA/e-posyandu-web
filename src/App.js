@@ -26,7 +26,7 @@ import Login from 'pages/Login';
 import Nutrition from 'pages/Nutrition'
 import Footer from 'components/Footer';
 import EditMastervilage from 'pages/edit/EditMastervilage';
-
+import EditPosyandu from 'pages/edit/EditPosyandu';
 
 // Tailwind CSS Style Sheet
 import 'assets/styles/tailwind.css';
@@ -69,6 +69,7 @@ function App() {
                         <Route exact path="/posyandu/create" element={<CreatePosyandu/>} />
                         <Route exact path="/nutrition" element={<Nutrition/>} />
                         <Route exact path="/masterVilage/edit/:id" element={<EditMastervilage/>} />
+                        <Route exact path="/posyandu/edit/:id" element={<EditPosyandu/>} />
                     </Route>
                     
                     {/* <Navigate  from="*" to="/" /> */}

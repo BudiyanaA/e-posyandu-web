@@ -91,7 +91,9 @@ export default function CardTable() {
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 
-                                        <Button color="green" size="sm"><Icon name="create" size="xl" /></Button>
+                                    <a href={"/posyandu/edit/" + posyandu.id}>                                 
+                                        <Button color="green" size="sm"><Icon name="edit" size="xl" /></Button>
+                                    </a>
                                         <Button onClick={()=>removePosyandus(posyandu.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
                                     </div>                                
                                 </th>
