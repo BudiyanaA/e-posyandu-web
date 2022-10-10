@@ -7,6 +7,7 @@ import Mastervaksin from 'pages/Mastervaksin';
 import Masterreligion from 'pages/Masterreligion';
 import Masterplace from 'pages/Masterplace';
 import Mastereducation from 'pages/Mastereducation';
+import Masterpuskesmas from 'pages/Masterpuskesmas';
 import Mom from 'pages/Mom';
 import Dad from 'pages/Dad';
 import Imunization from 'pages/Imunization';
@@ -22,6 +23,7 @@ import CreateMastervaksin from 'pages/create/CreateMastervaksin';
 import CreateMasterreligion from 'pages/create/CreateMasterreligion';
 import CreateMasterplace from 'pages/create/CreateMasterplace';
 import CreateMastereducation from 'pages/create/CreateMastereducation';
+import CreateMasterpuskesmas from 'pages/create/CreateMasterpuskesmas';
 import CreateMom from 'pages/create/CreateMom';
 import CreateDad from 'pages/create/CreateDad';
 import CreateImunization from 'pages/create/CreateImunization';
@@ -38,6 +40,7 @@ import EditMastervaksin from 'pages/edit/EditMastervaksin';
 import EditMasterreligion from 'pages/edit/EditMasterreligion';
 import EditMasterplace from 'pages/edit/EditMasterplace';
 import EditMastereducation from 'pages/edit/EditMastereducation';
+import EditMasterpuskesmas from 'pages/edit/EditMasterpuskesmas';
 import EditPosyandu from 'pages/edit/EditPosyandu';
 
 // Tailwind CSS Style Sheet
@@ -63,6 +66,7 @@ function App() {
                         <Route exact path="/masterreligion" element={<Masterreligion/>} />
                         <Route exact path="/masterplace" element={<Masterplace/>} />
                         <Route exact path="/mastereducation" element={<Mastereducation/>} />
+                        <Route exact path="/masterpuskesmas" element={<Masterpuskesmas/>} />
                         <Route exact path="/mom" element={<Mom/>} />
                         <Route exact path="/dad" element={<Dad/>} />
                         <Route exact path="/imunization" element={<Imunization/>} />
@@ -79,6 +83,7 @@ function App() {
                         <Route exact path="/masterreligion/create" element={<CreateMasterreligion/>} />
                         <Route exact path="/masterplace/create" element={<CreateMasterplace/>} />
                         <Route exact path="/mastereducation/create" element={<CreateMastereducation/>} />
+                        <Route exact path="/masterpuskesmas/create" element={<CreateMasterpuskesmas/>} />
                         <Route exact path="/mom/create" element={<CreateMom/>} />
                         <Route exact path="/dad/create" element={<CreateDad/>} />
                         <Route exact path="/imunization/create" element={<CreateImunization/>} />
@@ -93,6 +98,7 @@ function App() {
                         <Route exact path="/masterreligion/edit/:id" element={<EditMasterreligion/>} />
                         <Route exact path="/masterplace/edit/:id" element={<EditMasterplace/>} />
                         <Route exact path="/mastereducation/edit/:id" element={<EditMastereducation/>} />
+                        <Route exact path="/masterpuskesmas/edit/:id" element={<EditMasterpuskesmas/>} />
                         <Route exact path="/posyandu/edit/:id" element={<EditPosyandu/>} />
                     </Route>
                     
