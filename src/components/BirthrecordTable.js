@@ -3,7 +3,42 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
+import React, { useState, useEffect } from "react";
+import BirthrecordDataService from "services/BirthrecordService";
 export default function CardTable() {
+    const [birthrecords, setBirthrecords] = useState([]);
+    const [currentBirthrecord, setCurrentBirthrecord] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(-1);
+
+    useEffect(() => {
+        retrieveBirthrecords();
+      }, []);
+      const retrieveBirthrecords = () => {
+        BirthrecordDataService.getAll()
+          .then(response => {
+            setBirthrecords(response.data);
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      };
+      const refreshList = () => {
+        retrieveBirthrecords();
+        setCurrentBirthrecord(null);
+        setCurrentIndex(-1);
+      };
+
+      const removeBirthrecords = (id) => {
+        BirthrecordDataService.remove(id)
+          .then(response => {
+            console.log(response.data);
+            refreshList();
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }; 
     return (
         <Card>
              <CardHeader color="purple" contentPosition="#">
@@ -43,50 +78,55 @@ export default function CardTable() {
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Mom_id 
                                 </th>
-                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+                                {/* <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Birth_condition_ids 
-                                </th>
+                                </th> */}
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
+                        {birthrecords &&
+                            birthrecords.map((birthrecord, index) => (
                             <tr>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {index+1}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    2,5
+                                {birthrecord.weight}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    0,52
+                                {birthrecord.body_length}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    30
+                                {birthrecord.head_circumference}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    02:00
+                                {birthrecord.time}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Pria
+                                {birthrecord.gender}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {birthrecord.place_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {birthrecord.mom_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {birthrecord.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 
-                                        <Button color="green" size="sm"><Icon name="create" size="xl" /></Button>
-                                        <Button color="red" size="sm"><Icon name="delete" size="xl" /></Button>
+                                    <a href={"/birthrecord/edit/" + birthrecord.id}>                                 
+                                        <Button color="green" size="sm"><Icon name="edit" size="xl" /></Button>
+                                    </a>
+                                    <Button onClick={()=>removeBirthrecords(birthrecord.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
                                     </div>                                
                                 </th>
                             </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

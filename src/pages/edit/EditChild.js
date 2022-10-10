@@ -5,74 +5,62 @@ import Button from '@material-tailwind/react/Button';
 import Input from '@material-tailwind/react/Input';
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
-import DadDataService from "services/DadService";
-import MasterreligionDataService from "services/MasterreligionService";
-import MastereducationDataService from "services/MastereducationService";
+import ChildDataService from "services/ChildService";
+import PosyanduDataService from "services/PosyanduService";
 import MomDataService from "services/MomService";
+import BirthrecordDataService from "services/BirthrecordService";
 
-export default function DadsForm() {
+export default function SettingsForm() {
     const { id }= useParams();
-    const initialDadState = {
+    const initialChildState = {
         id: null,
         name: "",
         nik: "",
-        birth_date: "",
+        pregnancy_to: "",
         birth_place: "",
-        religion_id: "",
-        education_id: "",
-        blood_type: "",
-        profession: "",
-        mom_id: ""
+        birth_date: "",
+        birth_certificate_number: "",
+        insurance_number: "",
+        gender: "",
+        mom_id: "",
+        birth_record_id: "",
+        posyandu_id: ""
       };
-      const [masterreligions, setMasterreligions ] = useState([]);
-      const [mastereducations, setMastereducations] = useState([]);
+      const [posyandus, setPosyandus ] = useState([]);
       const [moms, setMoms ] = useState([]);
-      const [currentDad, setCurrenDad] = useState(initialDadState);
+      const [birthrecords, setBirthrecords ] = useState([]);
+      const [currentChild, setCurrenChild] = useState(initialChildState);
       const [edit , setEdit] = useState(false);
       const [ setMessage] = useState("");
-      const getDad = id => {
+      const getChild = id => {
 
-        DadDataService.get(id)
+        ChildDataService.get(id)
         .then(response => {
-          setCurrenDad(response.data);                
+          setCurrenChild(response.data);                
           console.log(response.data);
         })
         .catch(e => {             
           console.log(e);
         });
     };
-    
+
     const handleInputChange = event => {
         const { name, value } = event.target;
-        setCurrenDad({ ...currentDad, [name]: value });
+        setCurrenChild({ ...currentChild, [name]: value });
       };
 
       useEffect(() => {
         if (id)
-          getDad(id);
+          getChild(id);
       }, [id]);
 
       useEffect(() => {
-        retrieveMasterreligions();
+        retrievePosyandus();
       }, []);
-      const retrieveMasterreligions = () => {
-        MasterreligionDataService.getAll()
+      const retrievePosyandus = () => {
+        PosyanduDataService.getAll()
           .then(response => {
-            setMasterreligions(response.data);
-            console.log(response.data);
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      };
-
-      useEffect(() => {
-        retrieveMastereducations();
-      }, []);
-      const retrieveMastereducations = () => {
-        MastereducationDataService.getAll()
-          .then(response => {
-            setMastereducations(response.data);
+            setPosyandus(response.data);
             console.log(response.data);
           })
           .catch(e => {
@@ -94,8 +82,23 @@ export default function DadsForm() {
           });
       };
 
-      const updateDad = () => {
-        DadDataService.update(currentDad.id, currentDad)
+      useEffect(() => {
+        retrieveBirthrecords();
+      }, []);
+      const retrieveBirthrecords = () => {
+        BirthrecordDataService.getAll()
+          .then(response => {
+            setBirthrecords(response.data);
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      };
+
+
+       const updateChild = () => {
+        ChildDataService.update(currentChild.id, currentChild)
           .then(response => {
             console.log(response.data);
             setMessage("The tutorial was updated successfully!");
@@ -118,7 +121,7 @@ export default function DadsForm() {
                             size="lg"
                             style={{ padding: 0 }}
                         >
-                            Dad
+                            Child
                         </Button>
                     </div>
                 </CardHeader>
@@ -138,7 +141,7 @@ export default function DadsForm() {
                                     placeholder="Name"
                                     id="name"
                                     required
-                                    value={currentDad.name}
+                                    value={currentChild.name}
                                     onChange={handleInputChange}
                                     name="name"
                                 />
@@ -150,19 +153,43 @@ export default function DadsForm() {
                                     placeholder="NIk"
                                     id="nik"
                                     required
-                                    value={currentDad.nik}
+                                    value={currentChild.nik}
                                     onChange={handleInputChange}
                                     name="nik"
                                 />
-                            </div>                          
+                            </div>
+                            <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
+                                <Input
+                                    type="number"
+                                    color="purple"
+                                    placeholder="Pregnancy_to"
+                                    id="pregnancy_to"
+                                    required
+                                    value={currentChild.pregnancy_to}
+                                    onChange={handleInputChange}
+                                    name="pregnancy_to"
+                                />
+                            </div>
+                            <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
+                                <Input
+                                    type="text"
+                                    color="purple"
+                                    placeholder="Birth_place"
+                                    id="birth_place"
+                                    required
+                                    value={currentChild.birth_place}
+                                    onChange={handleInputChange}
+                                    name="birth_place"
+                                />
+                            </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
                                 <Input
                                     type="date"
                                     color="purple"
-                                    placeholder="birth_date"
+                                    placeholder="Birth_date"
                                     id="birth_date"
                                     required
-                                    value={currentDad.birth_date}
+                                    value={currentChild.birth_date}
                                     onChange={handleInputChange}
                                     name="birth_date"
                                 />
@@ -171,64 +198,66 @@ export default function DadsForm() {
                                 <Input
                                     type="text"
                                     color="purple"
-                                    placeholder="birth_place"
-                                    id="birth_place"
+                                    placeholder="Birth_certificate_number"
+                                    id="birth_certificate_number"
                                     required
-                                    value={currentDad.birth_place}
+                                    value={currentChild.birth_certificate_number}
                                     onChange={handleInputChange}
-                                    name="birth_place"
-                                />
-                            </div>
-                            <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                            <select value={currentDad.religion_id} onChange={handleInputChange} name="religion_id" id="religion_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            {masterreligions &&
-                            masterreligions.map((masterreligion, index) => (
-                                <option  value= {masterreligion.id}>{masterreligion.name}</option>
-                                ))} 
-                            </select>
-                            </div>
-                            <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                            <select value={currentDad.education_id} onChange={handleInputChange} name="education_id" id="education_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            {mastereducations &&
-                            mastereducations.map((mastereducation, index) => (
-                                <option  value= {mastereducation.id}>{mastereducation.name}</option>
-                                ))} 
-                            </select>
-                            </div>
-                            <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                                <Input
-                                    type="text"
-                                    color="purple"
-                                    placeholder="blood_type"
-                                    id="blood_type"
-                                    required
-                                    value={currentDad.blood_type}
-                                    onChange={handleInputChange}
-                                    name="blood_type"
+                                    name="birth_certificate_number"
                                 />
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
                                 <Input
                                     type="text"
                                     color="purple"
-                                    placeholder="profession"
-                                    id="profession"
+                                    placeholder="Insurance_number"
+                                    id="insurance_number"
                                     required
-                                    value={currentDad.profession}
+                                    value={currentChild.insurance_number}
                                     onChange={handleInputChange}
-                                    name="profession"
+                                    name="insurance_number"
                                 />
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                            <select value={currentDad.mom_id} onChange={handleInputChange} name="education_id" id="education_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <Input
+                                    type="text"
+                                    color="purple"
+                                    placeholder="Gender"
+                                    id="gender"
+                                    required
+                                    value={currentChild.gender}
+                                    onChange={handleInputChange}
+                                    name="gender"
+                                />
+                            </div>
+                            <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
+                            <select value={currentChild.religion_id} onChange={handleInputChange} name="mom_id" id="mom_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             {moms &&
                             moms.map((mom, index) => (
                                 <option  value= {mom.id}>{mom.name}</option>
                                 ))} 
                             </select>
                             </div>
+
+                            <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
+                            <select value={currentChild.religion_id} onChange={handleInputChange} name="birth_record_id" id="birth_record_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            {birthrecords &&
+                            birthrecords.map((birthrecord, index) => (
+                                <option  value= {birthrecord.id}>{birthrecord.weight}</option>
+                                ))} 
+                            </select>
+                            </div>
+
+                            <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
+                            <select value={currentChild.religion_id} onChange={handleInputChange} name="posyandu_id" id="education_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            {posyandus &&
+                            posyandus.map((posyandu, index) => (
+                                <option  value= {posyandu.id}>{posyandu.name}</option>
+                                ))} 
+                            </select>
+                            </div>
                         </div>
-                        <Button onClick={updateDad} className="btn btn-success" color="blue">
+                        <Button onClick={updateChild} className="btn btn-success" color="blue">
                              Submit
                         </Button>
                         </div>                               
