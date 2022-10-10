@@ -46,6 +46,7 @@ import EditMasterpuskesmas from 'pages/edit/EditMasterpuskesmas';
 import EditMasterbirthcondition from 'pages/edit/EditMasterbirthcondition';
 import EditPosyandu from 'pages/edit/EditPosyandu';
 import EditMom from 'pages/edit/EditMom';
+import EditDad from 'pages/edit/EditDad';
 
 // Tailwind CSS Style Sheet
 import 'assets/styles/tailwind.css';
@@ -108,6 +109,7 @@ function App() {
                         <Route exact path="/masterbirthcondition/edit/:id" element={<EditMasterbirthcondition/>} />
                         <Route exact path="/posyandu/edit/:id" element={<EditPosyandu/>} />
                         <Route exact path="/mom/edit/:id" element={<EditMom/>} />
+                        <Route exact path="/dad/edit/:id" element={<EditDad/>} />
                     </Route>
                     
                     {/* <Navigate  from="*" to="/" /> */}
