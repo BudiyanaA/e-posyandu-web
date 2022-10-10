@@ -4,11 +4,13 @@ import CardBody from '@material-tailwind/react/CardBody';
 import Button from '@material-tailwind/react/Button';
 import Input from '@material-tailwind/react/Input';
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import MomDataService from "services/MomService";
 import MasterreligionDataService from "services/MasterreligionService";
 import MastereducationDataService from "services/MastereducationService";
 
 export default function SettingsForm() {
+    const { id }= useParams();
     const initialMomState = {
         id: null,
         name: "",
@@ -27,13 +29,29 @@ export default function SettingsForm() {
       };
       const [masterreligions, setMasterreligions ] = useState([]);
       const [mastereducations, setMastereducations] = useState([]);
-      const [mom, setMom] = useState(initialMomState);
-      const [submitted, setSubmitted] = useState(false);
+      const [currentMom, setCurrentMom] = useState(initialMomState);
+      const [edit , setEdit] = useState(false);
+      const [ setMessage] = useState("");
+      const getMom = id => {
 
-      const handleInputChange = event => {
+        MomDataService.get(id)
+        .then(response => {
+          setCurrentMom(response.data);                
+          console.log(response.data);
+        })
+        .catch(e => {             
+          console.log(e);
+        });
+    };
+    const handleInputChange = event => {
         const { name, value } = event.target;
-        setMom({ ...mom, [name]: value });
+        setCurrentMom({ ...currentMom, [name]: value });
       };
+
+      useEffect(() => {
+        if (id)
+          getMom(id);
+      }, [id]);
 
       useEffect(() => {
         retrieveMasterreligions();
@@ -63,45 +81,14 @@ export default function SettingsForm() {
           });
       };
 
-      const saveMom = () => {
-        var data = {
-          name: mom.name,
-          nik: mom.nik,
-          address: mom.address,
-          city: mom.city,
-          districts: mom.districts,
-          birth_place: mom.birth_place,
-          birth_date: mom.birth_date,
-          religion_id: mom.religion_id,
-          education_id: mom.education_id,
-          blood_type: mom.blood_type,
-          profession: mom.profession,
-          insurance_number: mom.insurance_number,
-        //   user_id: mom.user_id
-        };
-
-        MomDataService.create(data)
+      const updateMom = () => {
+        MomDataService.update(currentMom.id, currentMom)
           .then(response => {
-            setMom({
-              id: response.data.id,
-              name: response.data.name,
-              nik: response.data.nik,
-              address: response.data.address,
-              city: response.data.city,
-              districts: response.data.districts,
-              birth_place: response.data.birth_place,
-              birth_date: response.data.birth_date,
-              religion_id: response.data.religion_id,
-              education_id: response.data.education_id,
-              blood_type: response.data.blood_type,
-              profession: response.data.profession,
-              insurance_number: response.data.insurance_number,
-            //   user_id: response.data.user_id
-            });
-            setSubmitted(true);
             console.log(response.data);
+            setMessage("The tutorial was updated successfully!");
           })
           .catch(e => {
+            setEdit(true);
             console.log(e);
           });
       };
@@ -124,9 +111,9 @@ export default function SettingsForm() {
                 </CardHeader>
                 <CardBody>
                 <div className="submit-form">
-                    {submitted ? (
+                    {edit ? (
                     <div>
-                      <h4>You submitted successfully!</h4>
+                      <h4>You edit successfully!</h4>
                     </div>
                     ) : (
                     <div>
@@ -138,7 +125,7 @@ export default function SettingsForm() {
                                     placeholder="Name"
                                     id="name"
                                     required
-                                    value={mom.name}
+                                    value={currentMom.name}
                                     onChange={handleInputChange}
                                     name="name"
                                 />
@@ -150,7 +137,7 @@ export default function SettingsForm() {
                                     placeholder="NIk"
                                     id="nik"
                                     required
-                                    value={mom.nik}
+                                    value={currentMom.nik}
                                     onChange={handleInputChange}
                                     name="nik"
                                 />
@@ -162,7 +149,7 @@ export default function SettingsForm() {
                                     placeholder="Address"
                                     id="address"
                                     required
-                                    value={mom.address}
+                                    value={currentMom.address}
                                     onChange={handleInputChange}
                                     name="address"
                                 />
@@ -174,7 +161,7 @@ export default function SettingsForm() {
                                     placeholder="City"
                                     id="city"
                                     required
-                                    value={mom.city}
+                                    value={currentMom.city}
                                     onChange={handleInputChange}
                                     name="city"
                                 />
@@ -186,7 +173,7 @@ export default function SettingsForm() {
                                     placeholder="districts"
                                     id="districts"
                                     required
-                                    value={mom.districts}
+                                    value={currentMom.districts}
                                     onChange={handleInputChange}
                                     name="districts"
                                 />
@@ -198,7 +185,7 @@ export default function SettingsForm() {
                                     placeholder="birth_place"
                                     id="birth_place"
                                     required
-                                    value={mom.birth_place}
+                                    value={currentMom.birth_place}
                                     onChange={handleInputChange}
                                     name="birth_place"
                                 />
@@ -210,13 +197,13 @@ export default function SettingsForm() {
                                     placeholder="birth_date"
                                     id="birth_date"
                                     required
-                                    value={mom.birth_date}
+                                    value={currentMom.birth_date}
                                     onChange={handleInputChange}
                                     name="birth_date"
                                 />
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                            <select onChange={handleInputChange} name="religion_id" id="religion_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select value={currentMom.religion_id} onChange={handleInputChange} name="religion_id" id="religion_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             {masterreligions &&
                             masterreligions.map((masterreligion, index) => (
                                 <option  value= {masterreligion.id}>{masterreligion.name}</option>
@@ -224,7 +211,7 @@ export default function SettingsForm() {
                             </select>
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                            <select onChange={handleInputChange} name="education_id" id="education_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select value={currentMom.education_id} onChange={handleInputChange} name="education_id" id="education_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             {mastereducations &&
                             mastereducations.map((mastereducation, index) => (
                                 <option  value= {mastereducation.id}>{mastereducation.name}</option>
@@ -238,7 +225,7 @@ export default function SettingsForm() {
                                     placeholder="blood_type"
                                     id="blood_type"
                                     required
-                                    value={mom.blood_type}
+                                    value={currentMom.blood_type}
                                     onChange={handleInputChange}
                                     name="blood_type"
                                 />
@@ -250,7 +237,7 @@ export default function SettingsForm() {
                                     placeholder="profession"
                                     id="profession"
                                     required
-                                    value={mom.profession}
+                                    value={currentMom.profession}
                                     onChange={handleInputChange}
                                     name="profession"
                                 />
@@ -262,7 +249,7 @@ export default function SettingsForm() {
                                     placeholder="insurance_number"
                                     id="insurance_number"
                                     required
-                                    value={mom.insurance_number}
+                                    value={currentMom.insurance_number}
                                     onChange={handleInputChange}
                                     name="insurance_number"
                                 />
@@ -280,7 +267,7 @@ export default function SettingsForm() {
                                 />
                             </div> */}
                         </div>
-                        <Button onClick={saveMom} className="btn btn-success" color="blue">
+                        <Button onClick={updateMom} className="btn btn-success" color="blue">
                              Submit
                         </Button>
                         </div>                               

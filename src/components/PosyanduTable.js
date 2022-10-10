@@ -5,7 +5,8 @@ import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
 import React, { useState, useEffect } from "react";
 import PosyanduDataService from "services/PosyanduService";
-export default function CardTable() {
+
+export default function PosyanduTable() {
     const [posyandus, setPosyandus] = useState([]);
     const [currentPosyandu, setCurrentPosyandu] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
