@@ -44,7 +44,7 @@ export default function LoginForm() {
       };
     return (
         <>
-          <div className="bg-light-blue-500 pt-10 pb-25"></div>
+          <div className="bg-light-blue-500 pt-10 pb-25 "></div>
           <Card>
             <CardHeader color="purple" contentPosition="none">
               <div className="w-full flex items-center justify-between">
