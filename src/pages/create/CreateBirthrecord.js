@@ -162,16 +162,10 @@ export default function SettingsForm() {
                                 />
                             </div>  
                             <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
-                                <Input
-                                    type="text"
-                                    color="purple"
-                                    placeholder="Gender"
-                                    id="gender"
-                                    required
-                                    value={birthrecord.gender}
-                                    onChange={handleInputChange}
-                                    name="gender"
-                                />
+                            <select name="gender" id="gender" value={birthrecord.gender} onChange={handleInputChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="M">M</option>
+                                <option value="F">F</option>
+                            </select>
                             </div>  
                             <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
                             <select onChange={handleInputChange} name="place_id" id="place_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

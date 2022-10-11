@@ -232,16 +232,12 @@ export default function MomsForm() {
                             </select>
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                                <Input              
-                                    type="select"
-                                    color="purple"
-                                    placeholder="blood_type"
-                                    id="blood_type"
-                                    required
-                                    value={mom.blood_type}
-                                    onChange={handleInputChange}
-                                    name="blood_type"
-                                />
+                            <select name="blood_type" id="blood_type" value={mom.blood_type} onChange={handleInputChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="AB">O</option>
+                                <option value="O">AB</option>
+                            </select>
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
                                 <Input
