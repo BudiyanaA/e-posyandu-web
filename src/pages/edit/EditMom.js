@@ -98,7 +98,7 @@ export default function SettingsForm() {
             <Card>
                 <CardHeader color="purple" contentPosition="none">
                     <div className="w-full flex items-center justify-between">
-                        <h2 className="text-white text-2xl">Create</h2>
+                        <h2 className="text-white text-2xl">Edit</h2>
                         <Button
                             color="transparent"
                             buttonType="link"

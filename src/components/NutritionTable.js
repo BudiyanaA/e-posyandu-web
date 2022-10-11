@@ -64,10 +64,10 @@ export default function CardTable() {
                                 {index+1}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                {nutrition.child_id}
+                                {nutrition.child.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                {nutrition.child.mom_id}
+                                {nutrition.child.mom.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                 {nutrition.child.dad_id}

@@ -220,7 +220,7 @@ export default function MomsForm() {
                             {masterreligions &&
                             masterreligions.map((masterreligion, index) => (
                                 <option  value= {masterreligion.id}>{masterreligion.name}</option>
-                                ))} 
+                                ))}
                             </select>
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
