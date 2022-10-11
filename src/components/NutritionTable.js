@@ -3,8 +3,25 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
+import React, { useState, useEffect } from "react";
+import NutritionDataService from "services/NutritionService";
 
 export default function CardTable() {
+    const [nutrition, setNutrition] = useState([]);
+
+    useEffect(() => {
+        retrieveNutrition();
+      }, []);
+      const retrieveNutrition = () => {
+        NutritionDataService.getAll()
+          .then(response => {
+            setNutrition(response.data);
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      };
     return (
         <Card>
              <CardHeader color="purple" contentPosition="#">
@@ -36,32 +53,27 @@ export default function CardTable() {
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Dad
                                 </th>
-                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                    Action
-                                </th>
+
                             </tr>
                         </thead>
                         <tbody>
+                        {nutrition &&
+                            nutrition.map((nutrition, index) => (
                             <tr>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {index+1}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Muhamad Rizki
+                                {nutrition.child_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Sarah
+                                {nutrition.child.mom_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Kevin
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <div className="flex w-max items-end gap-4">                                 
-                                        <Button color="green" size="sm"><Icon name="create" size="xl" /></Button>
-                                        <Button color="red" size="sm"><Icon name="delete" size="xl" /></Button>
-                                    </div>                                
+                                {nutrition.child.dad_id}
                                 </th>
                             </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
