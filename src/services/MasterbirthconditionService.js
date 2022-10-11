@@ -25,7 +25,7 @@ const removeAll = () => {
 };
 
 const findByTitle = title => {
-  return http.get(`/masterplaces?title=${title}`);
+  return http.get(`/masterbirthconditions?title=${title}`);
 };
 
 const MasterbirthconditionService = {

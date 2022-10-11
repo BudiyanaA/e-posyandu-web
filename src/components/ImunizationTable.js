@@ -3,7 +3,43 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
+import React, { useState, useEffect } from "react";
+import ImunizationDataService from "services/ImunizationService";
+
 export default function CardTable() {
+    const [imunizations, setImunizations] = useState([]);
+    const [currentImunization, setCurrentImunization] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(-1);
+
+    useEffect(() => {
+        retrieveImunizations();
+      }, []);
+      const retrieveImunizations = () => {
+        ImunizationDataService.getAll()
+          .then(response => {
+            setImunizations(response.data);
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      };
+      const refreshList = () => {
+        retrieveImunizations();
+        setCurrentImunization(null);
+        setCurrentIndex(-1);
+      };
+
+      const removeImunizations = (id) => {
+        ImunizationDataService.remove(id)
+          .then(response => {
+            console.log(response.data);
+            refreshList();
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }; 
     return (
         <Card>
             <CardHeader color="purple" contentPosition="#">
@@ -37,26 +73,31 @@ export default function CardTable() {
                             </tr>
                         </thead>
                         <tbody>
+                        {imunizations &&
+                            imunizations.map((imunization, index) => (
                             <tr>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {index+1}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {imunization.vaksin_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {imunization.child_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    20-02-20022
+                                {imunization.date}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 
-                                        <Button color="green" size="sm"><Icon name="create" size="xl" /></Button>
-                                        <Button color="red" size="sm"><Icon name="delete" size="xl" /></Button>
+                                    <a href={"/imunization/edit/" + imunization.id}>                                 
+                                        <Button color="green" size="sm"><Icon name="edit" size="xl" /></Button>
+                                    </a>
+                                    <Button onClick={()=>removeImunizations(imunization.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
                                     </div>                                
                                 </th>
                             </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
