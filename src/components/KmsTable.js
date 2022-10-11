@@ -3,7 +3,42 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
+import React, { useState, useEffect } from "react";
+import KmsDataService from "services/KmsService";
 export default function CardTable() {
+    const [kms, setKms] = useState([]);
+    const [currentKms, setCurrentKms] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(-1);
+
+    useEffect(() => {
+        retrieveKms();
+      }, []);
+      const retrieveKms = () => {
+        KmsDataService.getAll()
+          .then(response => {
+            setKms(response.data);
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      };
+      const refreshList = () => {
+        retrieveKms();
+        setCurrentKms(null);
+        setCurrentIndex(-1);
+      };
+
+      const removeKms = (id) => {
+        KmsDataService.remove(id)
+          .then(response => {
+            console.log(response.data);
+            refreshList();
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }; 
     return (
         <Card>
             <CardHeader color="purple" contentPosition="#">
@@ -23,16 +58,16 @@ export default function CardTable() {
                                     No
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                date
+                                Date
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                weight
+                                Weight
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                age 
+                                Height 
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                child_id 
+                                Child_id 
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Action
@@ -40,29 +75,34 @@ export default function CardTable() {
                             </tr>
                         </thead>
                         <tbody>
+                        {kms &&
+                            kms.map((kms, index) => (
                             <tr>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {index+1}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    14-13-2022
+                                {kms.date}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    0,50
+                                {kms.weight}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {kms.height}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {kms.child_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 
-                                        <Button color="green" size="sm"><Icon name="create" size="xl" /></Button>
-                                        <Button color="red" size="sm"><Icon name="delete" size="xl" /></Button>
+                                    <a href={"/kms/edit/" + kms.id}>                                 
+                                        <Button color="green" size="sm"><Icon name="edit" size="xl" /></Button>
+                                    </a>
+                                    <Button onClick={()=>removeKms(kms.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
                                     </div>                                
                                 </th>
                             </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

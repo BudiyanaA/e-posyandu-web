@@ -4,10 +4,12 @@ import CardBody from '@material-tailwind/react/CardBody';
 import Button from '@material-tailwind/react/Button';
 import Input from '@material-tailwind/react/Input';
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import KmsDataService from "services/KmsService";
 import ChildDataService from "services/ChildService";
 
 export default function SettingsForm() {
+    const { id }= useParams();
     const initialKmsState = {
         id: null,
         date: "",
@@ -16,13 +18,29 @@ export default function SettingsForm() {
         child_id: ""
       };
       const [childs, setChilds] = useState([]);
-      const [kms, setKms] = useState(initialKmsState);
-      const [submitted, setSubmitted] = useState(false);
+      const [currentKms, setCurrenKms] = useState(initialKmsState);
+      const [edit , setEdit] = useState(false);
+      const [ setMessage] = useState("");
+      const getKms = id => {
 
-      const handleInputChange = event => {
+        KmsDataService.get(id)
+        .then(response => {
+          setCurrenKms(response.data);                
+          console.log(response.data);
+        })
+        .catch(e => {             
+          console.log(e);
+        });
+    };
+
+    const handleInputChange = event => {
         const { name, value } = event.target;
-        setKms({ ...kms, [name]: value });
+        setCurrenKms({ ...currentKms, [name]: value });
       };
+      useEffect(() => {
+        if (id)
+        getKms(id);
+      }, [id]);
 
       useEffect(() => {
         retrieveChilds();
@@ -38,27 +56,14 @@ export default function SettingsForm() {
           });
       };
 
-      const saveKms = () => {
-        var data = {
-          date: kms.date,
-          weight: kms.weight,
-          height: kms.height,
-          child_id: kms.child_id
-        };
-
-        KmsDataService.create(data)
+      const updateKms = () => {
+        KmsDataService.update(currentKms.id, currentKms)
           .then(response => {
-            setKms({
-              id: response.data.id,
-              date: response.data.date,
-              weight: response.data.weight,
-              height: response.data.height,
-              child_id: response.data.child_id
-            });
-            setSubmitted(true);
             console.log(response.data);
+            setMessage("The tutorial was updated successfully!");
           })
           .catch(e => {
+            setEdit(true);
             console.log(e);
           });
       };
@@ -81,9 +86,9 @@ export default function SettingsForm() {
                 </CardHeader>
                 <CardBody>
                 <div className="submit-form">
-                    {submitted ? (
+                    {edit ? (
                     <div>
-                      <h4>You submitted successfully!</h4>
+                      <h4>You edit successfully!</h4>
                     </div>
                     ) : (
                     <div>
@@ -95,7 +100,7 @@ export default function SettingsForm() {
                                     placeholder="Date"
                                     id="date"
                                     required
-                                    value={kms.date}
+                                    value={currentKms.date}
                                     onChange={handleInputChange}
                                     name="date"
                                 />
@@ -107,7 +112,7 @@ export default function SettingsForm() {
                                     placeholder="Weight"
                                     id="weight"
                                     required
-                                    value={kms.weight}
+                                    value={currentKms.weight}
                                     onChange={handleInputChange}
                                     name="weight"
                                 />
@@ -119,13 +124,13 @@ export default function SettingsForm() {
                                     placeholder="Height"
                                     id="height"
                                     required
-                                    value={kms.height}
+                                    value={currentKms.height}
                                     onChange={handleInputChange}
                                     name="height"
                                 />
                             </div> 
                             <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
-                            <select onChange={handleInputChange} name="child_id" id="child_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select value={currentKms.child_id} onChange={handleInputChange} name="child_id" id="child_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             {childs &&
                             childs.map((child, index) => (
                                 <option  value= {child.id}>{child.name}</option>
@@ -133,7 +138,7 @@ export default function SettingsForm() {
                             </select>
                             </div>              
                         </div>
-                        <Button onClick={saveKms} className="btn btn-success" color="blue">
+                        <Button onClick={updateKms} className="btn btn-success" color="blue">
                              Submit
                         </Button>
                         </div>                               
