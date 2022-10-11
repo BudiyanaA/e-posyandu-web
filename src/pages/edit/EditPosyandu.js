@@ -4,10 +4,12 @@ import CardBody from '@material-tailwind/react/CardBody';
 import Button from '@material-tailwind/react/Button';
 import Input from '@material-tailwind/react/Input';
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import PosyanduDataService from "services/PosyanduService";
 import MastervilageDataService from "services/MastervilageService";
 
 export default function PosyanduForm() {
+    const { id }= useParams();
     const initialPosyanduState = {
         id: null,
         name: "",
@@ -15,13 +17,30 @@ export default function PosyanduForm() {
         village_id: ""
       };
       const [mastervilages, setMastervilages] = useState([]);
-      const [posyandu, setPosyandu] = useState(initialPosyanduState);
-      const [submitted, setSubmitted] = useState(false);
-
+      const [currentPosyandu, setCurrentPosyandu] = useState(initialPosyanduState);
+      const [edit , setEdit] = useState(false);
+      const [ setMessage] = useState("");
+      const getPosyandu = id => {
+            
+        PosyanduDataService.get(id)
+          .then(response => {
+            setCurrentPosyandu(response.data);                
+            console.log(response.data);
+          })
+          .catch(e => {             
+            console.log(e);
+          });
+      };
       const handleInputChange = event => {
         const { name, value } = event.target;
-        setPosyandu({ ...posyandu, [name]: value });
+        setCurrentPosyandu({ ...currentPosyandu, [name]: value });
       };
+
+      useEffect(() => {
+        if (id)
+          getPosyandu(id);
+      }, [id]);
+
       useEffect(() => {
         retrieveMastervilages();
       }, []);
@@ -36,25 +55,14 @@ export default function PosyanduForm() {
           });
       };
 
-      const savePosyandu = () => {
-        var data = {
-          name: posyandu.name,
-          rw: posyandu.rw,
-          village_id: posyandu.village_id
-        };
-
-        PosyanduDataService.create(data)
+      const updatePosyandu = () => {
+        PosyanduDataService.update(currentPosyandu.id, currentPosyandu)
           .then(response => {
-            setPosyandu({
-              id: response.data.id,
-              name: response.data.name,
-              rw: response.data.rw,
-              village_id: response.data.village_id
-            });
-            setSubmitted(true);
             console.log(response.data);
+            setMessage("The tutorial was updated successfully!");
           })
           .catch(e => {
+            setEdit(true);
             console.log(e);
           });
       };
@@ -64,7 +72,7 @@ export default function PosyanduForm() {
             <Card>
                 <CardHeader color="purple" contentPosition="none">
                     <div className="w-full flex items-center justify-between">
-                        <h2 className="text-white text-2xl">Create</h2>
+                        <h2 className="text-white text-2xl">Edit</h2>
                         <Button
                             color="transparent"
                             buttonType="link"
@@ -77,9 +85,9 @@ export default function PosyanduForm() {
                 </CardHeader>
                 <CardBody>
                 <div className="submit-form">
-                    {submitted ? (
+                    {edit ? (
                     <div>
-                      <h4>You submitted successfully!</h4>
+                      <h4>You edit successfully!</h4>
                     </div>
                     ) : (
                     <div>          
@@ -91,7 +99,7 @@ export default function PosyanduForm() {
                                     placeholder="Name"
                                     id="name"
                                     required
-                                    value={posyandu.name}
+                                    value={currentPosyandu.name}
                                     onChange={handleInputChange}
                                     name="name"
                                 />
@@ -103,14 +111,14 @@ export default function PosyanduForm() {
                                     placeholder="Rw"
                                     id="rw"
                                     required
-                                    value={posyandu.rw}
+                                    value={currentPosyandu.rw}
                                     onChange={handleInputChange}
                                     name="rw"
                                 />
                             </div>
                              
                             <div className="w-full lg:w-12/12 pr-4 mb-10 font-light">
-                            <select onChange={handleInputChange} name="village_id" id="village_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select value={currentPosyandu.village_id} onChange={handleInputChange} name="village_id" id="village_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             {mastervilages &&
                             mastervilages.map((mastervilage, index) => (
                                 <option  value= {mastervilage.id}>{mastervilage.name}</option>
@@ -118,7 +126,7 @@ export default function PosyanduForm() {
                             </select>
                          </div>                                        
                         </div>
-                        <Button onClick={savePosyandu} className="btn btn-success" color="blue">
+                        <Button onClick={updatePosyandu} className="btn btn-success" color="blue">
                              Submit
                         </Button>
                         </div>

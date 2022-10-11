@@ -3,7 +3,42 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
+import React, { useState, useEffect } from "react";
+import ChildDataService from "services/ChildService";
 export default function CardTable() {
+    const [childs, setChilds] = useState([]);
+    const [currentChild, setCurrentChild] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(-1);
+
+    useEffect(() => {
+        retrieveChilds();
+      }, []);
+      const retrieveChilds = () => {
+        ChildDataService.getAll()
+          .then(response => {
+            setChilds(response.data);
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      };
+      const refreshList = () => {
+        retrieveChilds();
+        setCurrentChild(null);
+        setCurrentIndex(-1);
+      };
+
+      const removeChilds = (id) => {
+        ChildDataService.remove(id)
+          .then(response => {
+            console.log(response.data);
+            refreshList();
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }; 
     return (
         <Card>
              <CardHeader color="purple" contentPosition="#">
@@ -61,50 +96,55 @@ export default function CardTable() {
                             </tr>
                         </thead>
                         <tbody>
+                        {childs &&
+                            childs.map((child, index) => (
                             <tr>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {index+1}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Rafly
+                                {child.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    0071542567920862
+                                {child.nik}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {child.pregnancy_to}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Kab.Garut
+                                {child.birth_place}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    23-12-2022
+                                {child.birth_date}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    000123763453726
+                                {child.birth_certificate_number}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    101917363
+                                {child.insurance_number}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Pria
+                                {child.gender}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {child.mom_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {child.birth_record_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {child.posyandu_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 
-                                        <Button color="green" size="sm"><Icon name="create" size="xl" /></Button>
-                                        <Button color="red" size="sm"><Icon name="delete" size="xl" /></Button>
+                                    <a href={"/child/edit/" + child.id}>                                 
+                                        <Button color="green" size="sm"><Icon name="edit" size="xl" /></Button>
+                                    </a>
+                                    <Button onClick={()=>removeChilds(child.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
                                     </div>                                
                                 </th>
                             </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

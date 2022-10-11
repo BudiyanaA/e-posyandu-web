@@ -3,8 +3,44 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
+import React, { useState, useEffect } from "react";
+import MomDataService from "services/MomService";
 
-export default function CardTable() {
+export default function MomTable() {
+    const [moms, setMoms] = useState([]);
+    const [currentMom, setCurrentMom] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(-1);
+
+    useEffect(() => {
+        retrieveMoms();
+      }, []);
+
+    const retrieveMoms = () => {
+        MomDataService.getAll()
+          .then(response => {
+            setMoms(response.data);
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      };
+      const refreshList = () => {
+        retrieveMoms();
+        setCurrentMom(null);
+        setCurrentIndex(-1);
+      };
+
+      const removeMoms = (id) => {
+        MomDataService.remove(id)
+          .then(response => {
+            console.log(response.data);
+            refreshList();
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }; 
     return (
         <Card>
             <CardHeader color="purple" contentPosition="#">
@@ -59,65 +95,70 @@ export default function CardTable() {
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Insurance_number
                                 </th>
-                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+                                {/* <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     User_id 
-                                </th>
+                                </th> */}
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
+                        {moms &&
+                            moms.map((mom, index) => (
                             <tr>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {index+1}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Mawar
+                                {mom.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    0087254316787921
+                                {mom.nik}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Kp.Ciramat
+                                {mom.address}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Kab.Garut
+                                {mom.city}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Jabar
+                                {mom.districts}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Kab.Garut
+                                {mom.birth_place}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    13-05-1999
+                                {mom.birth_date}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {mom.religion_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {mom.education_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    A
+                                {mom.blood_type}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    IRT
+                                {mom.profession}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    001
+                                {mom.insurance_number}
                                 </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
-                                </th>
+                                {/* <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                {mom.user_id}
+                                </th> */}
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 
-                                        <Button color="green" size="sm"><Icon name="create" size="xl" /></Button>
-                                        <Button color="red" size="sm"><Icon name="delete" size="xl" /></Button>
+                                    <a href={"/mom/edit/" + mom.id}>                                 
+                                        <Button color="green" size="sm"><Icon name="edit" size="xl" /></Button>
+                                    </a>
+                                    <Button onClick={()=>removeMoms(mom.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
                                     </div> 
                                 </th>
                             </tr>
+                             ))}
                         </tbody>
                     </table>
                 </div>

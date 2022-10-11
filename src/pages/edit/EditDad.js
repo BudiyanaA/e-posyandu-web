@@ -4,12 +4,14 @@ import CardBody from '@material-tailwind/react/CardBody';
 import Button from '@material-tailwind/react/Button';
 import Input from '@material-tailwind/react/Input';
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import DadDataService from "services/DadService";
 import MasterreligionDataService from "services/MasterreligionService";
 import MastereducationDataService from "services/MastereducationService";
 import MomDataService from "services/MomService";
 
 export default function DadsForm() {
+    const { id }= useParams();
     const initialDadState = {
         id: null,
         name: "",
@@ -25,13 +27,30 @@ export default function DadsForm() {
       const [masterreligions, setMasterreligions ] = useState([]);
       const [mastereducations, setMastereducations] = useState([]);
       const [moms, setMoms ] = useState([]);
-      const [dad, setDad] = useState(initialDadState);
-      const [submitted, setSubmitted] = useState(false);
+      const [currentDad, setCurrenDad] = useState(initialDadState);
+      const [edit , setEdit] = useState(false);
+      const [ setMessage] = useState("");
+      const getDad = id => {
 
-      const handleInputChange = event => {
+        DadDataService.get(id)
+        .then(response => {
+          setCurrenDad(response.data);                
+          console.log(response.data);
+        })
+        .catch(e => {             
+          console.log(e);
+        });
+    };
+    
+    const handleInputChange = event => {
         const { name, value } = event.target;
-        setDad({ ...dad, [name]: value });
+        setCurrenDad({ ...currentDad, [name]: value });
       };
+
+      useEffect(() => {
+        if (id)
+          getDad(id);
+      }, [id]);
 
       useEffect(() => {
         retrieveMasterreligions();
@@ -75,37 +94,14 @@ export default function DadsForm() {
           });
       };
 
-      const saveDad = () => {
-        var data = {
-          name: dad.name,
-          nik: dad.nik,
-          birth_date: dad.birth_date,
-          birth_place: dad.birth_place,
-          religion_id: dad.religion_id,
-          education_id: dad.education_id,
-          blood_type: dad.blood_type,
-          profession: dad.profession,
-          mom_id: dad.mom_id,
-        };
-
-        DadDataService.create(data)
+      const updateDad = () => {
+        DadDataService.update(currentDad.id, currentDad)
           .then(response => {
-            setDad({
-              id: response.data.id,
-              name: response.data.name,
-              nik: response.data.nik,
-              birth_date: response.data.birth_date,
-              birth_place: response.data.birth_place,
-              religion_id: response.data.religion_id,
-              education_id: response.data.education_id,
-              blood_type: response.data.blood_type,
-              profession: response.data.profession,
-              mom_id: response.data.mom_id
-            });
-            setSubmitted(true);
             console.log(response.data);
+            setMessage("The tutorial was updated successfully!");
           })
           .catch(e => {
+            setEdit(true);
             console.log(e);
           });
       };
@@ -115,7 +111,7 @@ export default function DadsForm() {
             <Card>
                 <CardHeader color="purple" contentPosition="none">
                     <div className="w-full flex items-center justify-between">
-                        <h2 className="text-white text-2xl">Create</h2>
+                        <h2 className="text-white text-2xl">Edit</h2>
                         <Button
                             color="transparent"
                             buttonType="link"
@@ -128,9 +124,9 @@ export default function DadsForm() {
                 </CardHeader>
                 <CardBody>
                 <div className="submit-form">
-                    {submitted ? (
+                    {edit ? (
                     <div>
-                      <h4>You submitted successfully!</h4>
+                      <h4>You edit successfully!</h4>
                     </div>
                     ) : (
                     <div>
@@ -142,7 +138,7 @@ export default function DadsForm() {
                                     placeholder="Name"
                                     id="name"
                                     required
-                                    value={dad.name}
+                                    value={currentDad.name}
                                     onChange={handleInputChange}
                                     name="name"
                                 />
@@ -154,7 +150,7 @@ export default function DadsForm() {
                                     placeholder="NIk"
                                     id="nik"
                                     required
-                                    value={dad.nik}
+                                    value={currentDad.nik}
                                     onChange={handleInputChange}
                                     name="nik"
                                 />
@@ -166,7 +162,7 @@ export default function DadsForm() {
                                     placeholder="birth_date"
                                     id="birth_date"
                                     required
-                                    value={dad.birth_date}
+                                    value={currentDad.birth_date}
                                     onChange={handleInputChange}
                                     name="birth_date"
                                 />
@@ -178,13 +174,13 @@ export default function DadsForm() {
                                     placeholder="birth_place"
                                     id="birth_place"
                                     required
-                                    value={dad.birth_place}
+                                    value={currentDad.birth_place}
                                     onChange={handleInputChange}
                                     name="birth_place"
                                 />
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                            <select onChange={handleInputChange} name="religion_id" id="religion_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select value={currentDad.religion_id} onChange={handleInputChange} name="religion_id" id="religion_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             {masterreligions &&
                             masterreligions.map((masterreligion, index) => (
                                 <option  value= {masterreligion.id}>{masterreligion.name}</option>
@@ -192,7 +188,7 @@ export default function DadsForm() {
                             </select>
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                            <select onChange={handleInputChange} name="education_id" id="education_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select value={currentDad.education_id} onChange={handleInputChange} name="education_id" id="education_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             {mastereducations &&
                             mastereducations.map((mastereducation, index) => (
                                 <option  value= {mastereducation.id}>{mastereducation.name}</option>
@@ -200,7 +196,7 @@ export default function DadsForm() {
                             </select>
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                            <select name="blood_type" id="blood_type" value={dad.blood_type} onChange={handleInputChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select name="blood_type" id="blood_type" value={currentDad.blood_type} onChange={handleInputChange} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="AB">O</option>
@@ -214,13 +210,13 @@ export default function DadsForm() {
                                     placeholder="profession"
                                     id="profession"
                                     required
-                                    value={dad.profession}
+                                    value={currentDad.profession}
                                     onChange={handleInputChange}
                                     name="profession"
                                 />
                             </div>
                             <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                            <select onChange={handleInputChange} name="education_id" id="education_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select value={currentDad.mom_id} onChange={handleInputChange} name="education_id" id="education_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             {moms &&
                             moms.map((mom, index) => (
                                 <option  value= {mom.id}>{mom.name}</option>
@@ -228,7 +224,7 @@ export default function DadsForm() {
                             </select>
                             </div>
                         </div>
-                        <Button onClick={saveDad} className="btn btn-success" color="blue">
+                        <Button onClick={updateDad} className="btn btn-success" color="blue">
                              Submit
                         </Button>
                         </div>                               

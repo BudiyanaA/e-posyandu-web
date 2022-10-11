@@ -3,7 +3,44 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
-export default function CardTable() {
+import React, { useState, useEffect } from "react";
+import PosyanduDataService from "services/PosyanduService";
+
+export default function PosyanduTable() {
+    const [posyandus, setPosyandus] = useState([]);
+    const [currentPosyandu, setCurrentPosyandu] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(-1);
+
+    useEffect(() => {
+        retrievePosyandus();
+      }, []);
+
+      const retrievePosyandus = () => {
+        PosyanduDataService.getAll()
+          .then(response => {
+            setPosyandus(response.data);
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      };
+      const refreshList = () => {
+        retrievePosyandus();
+        setCurrentPosyandu(null);
+        setCurrentIndex(-1);
+      };
+
+      const removePosyandus = (id) => {
+        PosyanduDataService.remove(id)
+          .then(response => {
+            console.log(response.data);
+            refreshList();
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }; 
     return (
         <Card>
             <CardHeader color="purple" contentPosition="#">
@@ -37,26 +74,32 @@ export default function CardTable() {
                             </tr>
                         </thead>
                         <tbody>
+
+                        {posyandus &&
+                            posyandus.map((posyandu, index) => (
                             <tr>
                             <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {index+1}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Agus
+                                {posyandu.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    02
+                                {posyandu.rw}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    1
+                                {posyandu.village_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 
-                                        <Button color="green" size="sm"><Icon name="create" size="xl" /></Button>
-                                        <Button color="red" size="sm"><Icon name="delete" size="xl" /></Button>
+                                    <a href={"/posyandu/edit/" + posyandu.id}>                                 
+                                        <Button color="green" size="sm"><Icon name="edit" size="xl" /></Button>
+                                    </a>
+                                        <Button onClick={()=>removePosyandus(posyandu.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
                                     </div>                                
                                 </th>
                             </tr>
+                             ))}
                         </tbody>
                     </table>
                 </div>

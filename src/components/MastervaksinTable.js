@@ -4,20 +4,23 @@ import CardBody from '@material-tailwind/react/CardBody';
 import { Button } from "@material-tailwind/react";
 import Icon from '@material-tailwind/react/Icon';
 import React, { useState, useEffect } from "react";
-import ImunizationDataService from "services/ImunizationService";
-
-export default function CardTable() {
-    const [imunizations, setImunizations] = useState([]);
-    const [currentImunization, setCurrentImunization] = useState(null);
+import MastervaksinDataService from "services/MastervaksinService";
+export default function MastervaksinTable() {
+    const [mastervaksins, setMastervaksins] = useState([]);
+    const [currentMastervaksin, setCurrentMastervaksin] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
-
+    // const [searchName, setSearchName] = useState("");
     useEffect(() => {
-        retrieveImunizations();
+        retrieveMastervaksins();
       }, []);
-      const retrieveImunizations = () => {
-        ImunizationDataService.getAll()
+    //   const onChangeSearchName = e => {
+    //     const searchName = e.target.value;
+    //     setSearchName(searchName);
+    //   };
+      const retrieveMastervaksins = () => {
+        MastervaksinDataService.getAll()
           .then(response => {
-            setImunizations(response.data);
+            setMastervaksins(response.data);
             console.log(response.data);
           })
           .catch(e => {
@@ -25,13 +28,16 @@ export default function CardTable() {
           });
       };
       const refreshList = () => {
-        retrieveImunizations();
-        setCurrentImunization(null);
+        retrieveMastervaksins();
+        setCurrentMastervaksin(null);
         setCurrentIndex(-1);
       };
-
-      const removeImunizations = (id) => {
-        ImunizationDataService.remove(id)
+    //   const setActiveMastervilage = (mastervilage, index) => {
+    //     setCurrentMastervilage(mastervilage);
+    //     setCurrentIndex(index);
+    //   };
+      const removeMastervaksins = (id) => {
+        MastervaksinDataService.remove(id)
           .then(response => {
             console.log(response.data);
             refreshList();
@@ -39,18 +45,20 @@ export default function CardTable() {
           .catch(e => {
             console.log(e);
           });
-      }; 
+      };
     return (
+        
         <Card>
             <CardHeader color="purple" contentPosition="#">
                 <div className="flex w-max justify-between gap-4">
-                    <h2 className="text-white text-2xl">Table Imunisasi</h2>                                 
-                    <a href="/imunization/create">                      
+                    <h2 className="text-white text-2xl">Table Vaksin</h2>
+                    <a href="/mastervaksin/create">                      
                         <Button color="blue" size="sm"><Icon name="add" size="xl" /></Button> 
-                    </a>
+                    </a> 
                 </div>
             </CardHeader>
             <CardBody>
+            <ul className="list-group">
                 <div className="overflow-x-auto">
                     <table className="items-center w-full bg-transparent border-collapse">
                         <thead>
@@ -59,13 +67,7 @@ export default function CardTable() {
                                     No
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                vaksin_id 
-                                </th>
-                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                child_id  
-                                </th>
-                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                date 
+                                    Name
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Action
@@ -73,34 +75,32 @@ export default function CardTable() {
                             </tr>
                         </thead>
                         <tbody>
-                        {imunizations &&
-                            imunizations.map((imunization, index) => (
+                        
+                        {mastervaksins &&
+                            mastervaksins.map((mastervaksin, index) => (
                             <tr>
+                                
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                 {index+1}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                {imunization.vaksin_id}
+                                {mastervaksin.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                {imunization.child_id}
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                {imunization.date}
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <div className="flex w-max items-end gap-4">                                 
-                                    <a href={"/imunization/edit/" + imunization.id}>                                 
+                                    <div className="flex w-max items-end gap-4"> 
+                                    <a href={"/mastervaksin/edit/" + mastervaksin.id}>                                 
                                         <Button color="green" size="sm"><Icon name="edit" size="xl" /></Button>
                                     </a>
-                                    <Button onClick={()=>removeImunizations(imunization.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
+                                        <Button onClick={()=>removeMastervaksins(mastervaksin.id)} color="red" size="sm"><Icon name="delete" size="xl" /></Button>
                                     </div>                                
                                 </th>
                             </tr>
-                            ))}
+                             ))}
+                        
                         </tbody>
                     </table>
                 </div>
+                </ul>
             </CardBody>
         </Card>
     );

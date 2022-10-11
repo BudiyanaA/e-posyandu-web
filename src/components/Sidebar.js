@@ -51,6 +51,66 @@ export default function Sidebar() {
                             </li>
                             <li className="rounded-lg mb-2">
                                 <NavLink
+                                    to="/mastervaksin"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="medication" size="2xl" />
+                                    Vaksin
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/masterreligion"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="mosque" size="2xl" />
+                                    Religion
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/masterplace"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="home" size="2xl" />
+                                    Place    
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/mastereducation"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="school" size="2xl" />
+                                    Education    
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/masterpuskesmas"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="bloodtype" size="2xl" />
+                                    Puskesmas    
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/masterbirthcondition"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="home" size="2xl" />
+                                    Birth Condition    
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
                                     to="/mom"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
