@@ -132,10 +132,10 @@ export default function MomTable() {
                                 {mom.birth_date}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                {mom.religion_id}
+                                {mom.master_religion.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                {mom.education_id}
+                                {mom.master_education.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                 {mom.blood_type}

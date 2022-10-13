@@ -91,7 +91,7 @@ export default function CardTable() {
                                 {kms.height}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                {kms.child_id}
+                                {kms.child.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 

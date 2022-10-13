@@ -127,13 +127,13 @@ export default function CardTable() {
                                 {child.gender}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                {child.mom_id}
+                                {child.mom.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                 {child.birth_record_id}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                {child.posyandu_id}
+                                {child.posyandu.name}
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     <div className="flex w-max items-end gap-4">                                 
