@@ -28,6 +28,7 @@ export default function Sidebar() {
                         <hr className="my-4 min-w-full" />
 
                         <ul className="flex-col min-w-full flex list-none">
+                            
                             <li className="rounded-lg mb-4">
                                 <NavLink
                                     to="/"
@@ -37,106 +38,6 @@ export default function Sidebar() {
                                 >
                                     <Icon name="dashboard" size="2xl" />
                                     Dashboard
-                                </NavLink>
-                            </li>
-                            <li className="rounded-lg mb-2">
-                                <NavLink
-                                    to="/mastervilage"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="holiday_village" size="2xl" />
-                                    Desa
-                                </NavLink>
-                            </li>
-                            <li className="rounded-lg mb-2">
-                                <NavLink
-                                    to="/mastervaksin"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="medication" size="2xl" />
-                                    Vaksin
-                                </NavLink>
-                            </li>
-                            <li className="rounded-lg mb-2">
-                                <NavLink
-                                    to="/masterreligion"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="mosque" size="2xl" />
-                                    Religion
-                                </NavLink>
-                            </li>
-                            <li className="rounded-lg mb-2">
-                                <NavLink
-                                    to="/masterplace"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="home" size="2xl" />
-                                    Place    
-                                </NavLink>
-                            </li>
-                            <li className="rounded-lg mb-2">
-                                <NavLink
-                                    to="/mastereducation"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="school" size="2xl" />
-                                    Education    
-                                </NavLink>
-                            </li>
-                            <li className="rounded-lg mb-2">
-                                <NavLink
-                                    to="/masterpuskesmas"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="bloodtype" size="2xl" />
-                                    Puskesmas    
-                                </NavLink>
-                            </li>
-                            <li className="rounded-lg mb-2">
-                                <NavLink
-                                    to="/masterbirthcondition"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="home" size="2xl" />
-                                    Birth Condition    
-                                </NavLink>
-                            </li>
-                            <li className="rounded-lg mb-2">
-                                <NavLink
-                                    to="/mom"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="pregnant_woman" size="2xl" />
-                                    Ibu
-                                </NavLink>
-                            </li>
-                             <li className="rounded-lg mb-2">
-                                <NavLink
-                                    to="/dad"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="man" size="2xl" />
-                                    Suami
-                                </NavLink>
-                            </li>
-                            <li className="rounded-lg mb-2">
-                                <NavLink
-                                    to="/imunization"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="vaccines" size="2xl" />
-                                    Imunisasi
                                 </NavLink>
                             </li>
                             <li className="rounded-lg mb-2">
@@ -171,24 +72,39 @@ export default function Sidebar() {
                             </li>
                             <li className="rounded-lg mb-2">
                                 <NavLink
-                                    to="/birthrecord"
+                                    to="/imunization"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="receipt_long" size="2xl" />
-                                    Catatan Lahir
+                                    <Icon name="vaccines" size="2xl" />
+                                    Imunisasi
                                 </NavLink>
                             </li>
+
+                            <hr className="my-4 min-w-full" />
+
                             <li className="rounded-lg mb-2">
                                 <NavLink
-                                    to="/user"
+                                    to="/masterpuskesmas"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="person" size="2xl" />
-                                    User
+                                    <Icon name="bloodtype" size="2xl" />
+                                    Puskesmas    
                                 </NavLink>
                             </li>
+
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/mastervilage"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="holiday_village" size="2xl" />
+                                    Desa
+                                </NavLink>
+                            </li>
+                            
                             <li className="rounded-lg mb-2">
                                 <NavLink
                                     to="/posyandu"
@@ -199,6 +115,104 @@ export default function Sidebar() {
                                     Posyandu
                                 </NavLink>
                             </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/mom"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="pregnant_woman" size="2xl" />
+                                    Ibu
+                                </NavLink>
+                            </li>
+                             <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/dad"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="man" size="2xl" />
+                                    Suami
+                                </NavLink>
+                            </li>
+
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/birthrecord"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="receipt_long" size="2xl" />
+                                    Catatan Lahir
+                                </NavLink>
+                            </li>
+
+                            <hr className="my-4 min-w-full" />
+
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/mastervaksin"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="medication" size="2xl" />
+                                    Vaksin
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/masterplace"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="home" size="2xl" />
+                                    Place    
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/masterbirthcondition"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="home" size="2xl" />
+                                    Birth Condition    
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/masterreligion"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="mosque" size="2xl" />
+                                    Religion
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/mastereducation"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="school" size="2xl" />
+                                    Education    
+                                </NavLink>
+                            </li>
+
+                            <hr className="my-4 min-w-full" />
+
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to="/user"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="person" size="2xl" />
+                                    User
+                                </NavLink>
+                            </li>
+
                             {/* <li className="rounded-lg mb-2">
                                 <NavLink
                                     to="/settings"
