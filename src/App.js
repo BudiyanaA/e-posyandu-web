@@ -51,6 +51,7 @@ import EditBirthrecord from 'pages/edit/EditBirthrecord';
 import EditChild from 'pages/edit/EditChild';
 import EditImunization from 'pages/edit/EditImunization';
 import EditKms from 'pages/edit/EditKms';
+import EditUser from 'pages/edit/EditUser';
 
 // Tailwind CSS Style Sheet
 import 'assets/styles/tailwind.css';
@@ -118,6 +119,7 @@ function App() {
                         <Route exact path="/child/edit/:id" element={<EditChild/>} />
                         <Route exact path="/imunization/edit/:id" element={<EditImunization/>} />
                         <Route exact path="/kms/edit/:id" element={<EditKms/>} />
+                        <Route exact path="/user/edit/:id" element={<EditUser/>} />
                     </Route>
                     
                     {/* <Navigate  from="*" to="/" /> */}
